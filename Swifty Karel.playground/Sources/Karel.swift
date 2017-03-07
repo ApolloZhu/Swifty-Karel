@@ -1,51 +1,76 @@
 import UIKit
 
-/// Basic functionality of Karel
-public protocol Karel{
-    /// Move Karel forward 1 block in current direction
-    func move() throws
-    /// Turn Karel counterclockwise by 90 degree
-    func turnLeft()
-    /// Pick up one beeper at Karel's current location
-    func pickBeeper() throws
-    /// Put one beeper at Karel's current location
-    func putBeeper()
+class Karel {
+    public class var current: Karel? {
+        return Playground.current.world?.karel
+    }
+
+    weak var world: World?
+
+    func move() {
+
+    }
+
+    func turnLeft() {
+
+    }
+
+    func pickBeeper() {
+
+    }
+
+    func putBeeper() {
+
+    }
 
     // MARK: World Related
-    var position: Point { get set }
-    var direction: Direction { get set }
+    var position: Point?
+    var direction: MapDirection?
 
-    var isOnBeeper: Bool { get }
-    var isBlocked: Bool { get }
-    func isClearIn(_ position: Position) -> Bool
-    func isBlockedIn(_ position: Position) -> Bool
-}
+    var isOnBeeper: Bool {
+        return true
+    }
+    var isBlocked: Bool {
+        return true
+    }
 
-extension Karel{
-    func isFacing(_ direction: Direction) -> Bool{
+    func isClear(at direction: Direction) -> Bool {
+        return true
+    }
+
+    func isBlocked(at direction: Direction) -> Bool {
+        return !isClear(at: direction)
+    }
+
+    func turnRight() {
+
+    }
+
+    func turnAround() {
+
+    }
+
+    func pickBepper(count: Int) {
+
+    }
+
+    func putBeeper(count: Int) {
+
+    }
+
+    func isFacing(_ direction: MapDirection) -> Bool {
         return self.direction == direction
     }
-    func isNotFacing(_ direction: Direction) -> Bool{
+
+    func isNotFacing(_ direction: MapDirection) -> Bool {
         return !isFacing(direction)
     }
-}
-
-public protocol KarelDelegate{
-    var karel: Karel { get set }
-}
-
-public protocol SuperKarel: Karel{
-    func move()
-    func turnRight()
-    func turnAround()
-    func pickBepper(count: Int)
-    func putBeeper(count: Int)
-
-    func paintBlock(color:CGColor)
-    var colorOfBlock: CGColor { get }
-}
-
-enum KarelError: Error {
-    case beenBlocked
-    case noBeeper
+    
+    func paintBlock(color: UIColor) {
+        
+    }
+    
+    var colorOfBlock: UIColor {
+        return .clear
+    }
 }

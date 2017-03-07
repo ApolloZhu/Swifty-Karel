@@ -1,10 +1,10 @@
 import Foundation
 
-extension Int{
-    public static func random(from start: Int, to end: Int) -> Int{
+extension Int {
+    public static func random(from start: Int, to end: Int) -> Int {
         return Int(arc4random_uniform(UInt32(end)))*(end-start)+start
     }
-    public static func random(from start: Int, through end: Int) -> Int{
+    public static func random(from start: Int, through end: Int) -> Int {
         return random(from: start, to: end+1)
     }
 }
@@ -12,7 +12,7 @@ extension Int{
 import Foundation
 import UIKit
 
-public enum Direction: Int {
+public enum MapDirection: Int {
     case north, east, south, west
     case none
     init(_ string: String) {
@@ -31,13 +31,18 @@ public enum Direction: Int {
     }
 }
 
-public enum Position: Int {
+public enum Direction: Int {
     case front,right,back,left
     case none
 }
 
-public struct Point{
+public struct Point {
     public let x, y: Int
     init(_ x: Int = 0, _ y: Int = 0) { self.x = x;self.y = y }
     init(_ point: CGPoint) { self.init(Int(point.x),Int(point.y)) }
+}
+
+enum KarelError: Error {
+    case beenBlocked
+    case noBeeper
 }
