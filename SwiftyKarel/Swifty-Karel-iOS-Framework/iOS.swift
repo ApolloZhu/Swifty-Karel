@@ -15,7 +15,7 @@ extension SuperKarel{
     func paintBlock(color: CIColor){
         paintBlock(color: UIColor(ciColor: color).cgColor)
     }
-    var colorOfBlock: UIColor{
+    var colorOfBlock: UIColor {
         return UIColor(cgColor: colorOfBlock)
     }
 }

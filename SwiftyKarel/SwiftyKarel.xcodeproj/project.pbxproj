@@ -17,9 +17,7 @@
 		52034C471DAC87E000F07217 /* Example World.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52469A131DAC47E200813B78 /* Example World.plist */; };
 		52034C481DAC87E000F07217 /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52469A151DAC49CF00813B78 /* World.swift */; };
 		52034C4B1DAC8CA300F07217 /* iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52034C491DAC880300F07217 /* iOS.swift */; };
-		52034C4D1DAC8EAE00F07217 /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52034C4C1DAC8EAE00F07217 /* Random.swift */; };
 		522ED6C01DAD37D8004772A4 /* AZKarelWorldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522ED6BF1DAD37D8004772A4 /* AZKarelWorldView.swift */; };
-		522ED6C21DAD37F9004772A4 /* KarelWorldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522ED6C11DAD37F9004772A4 /* KarelWorldView.swift */; };
 		524699FF1DAC445100813B78 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524699FE1DAC445100813B78 /* AppDelegate.swift */; };
 		52469A011DAC445100813B78 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52469A001DAC445100813B78 /* ViewController.swift */; };
 		52469A041DAC445100813B78 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52469A021DAC445100813B78 /* Main.storyboard */; };
@@ -60,9 +58,7 @@
 		52034C361DAC879C00F07217 /* SwiftyKareliOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftyKareliOS.h; sourceTree = "<group>"; };
 		52034C371DAC879C00F07217 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52034C491DAC880300F07217 /* iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS.swift; sourceTree = "<group>"; };
-		52034C4C1DAC8EAE00F07217 /* Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Random.swift; sourceTree = "<group>"; };
 		522ED6BF1DAD37D8004772A4 /* AZKarelWorldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AZKarelWorldView.swift; path = ../AZKarelWorldView.swift; sourceTree = "<group>"; };
-		522ED6C11DAD37F9004772A4 /* KarelWorldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KarelWorldView.swift; sourceTree = "<group>"; };
 		524699FB1DAC445100813B78 /* Swifty-Karel-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swifty-Karel-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		524699FE1DAC445100813B78 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52469A001DAC445100813B78 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -173,8 +169,6 @@
 				52469A331DAC55A300813B78 /* Block.swift */,
 				52469A131DAC47E200813B78 /* Example World.plist */,
 				52469A151DAC49CF00813B78 /* World.swift */,
-				52034C4C1DAC8EAE00F07217 /* Random.swift */,
-				522ED6C11DAD37F9004772A4 /* KarelWorldView.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -347,9 +341,7 @@
 				52034C4B1DAC8CA300F07217 /* iOS.swift in Sources */,
 				52034C431DAC87E000F07217 /* Karel.swift in Sources */,
 				52034C481DAC87E000F07217 /* World.swift in Sources */,
-				522ED6C21DAD37F9004772A4 /* KarelWorldView.swift in Sources */,
 				522ED6C01DAD37D8004772A4 /* AZKarelWorldView.swift in Sources */,
-				52034C4D1DAC8EAE00F07217 /* Random.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,10 +1,4 @@
-//
-//  AZKarel.swift
-//  SwiftyKarel
-//
-//  Created by Apollonian on 10/10/16.
-//
-//
+import UIKit
 
 /// Basic functionality of Karel
 public protocol Karel{
