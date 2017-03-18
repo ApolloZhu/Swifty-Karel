@@ -4,21 +4,26 @@ enum SpeedConfig: Double {
     case half   = 0.5
     case normal = 1
     case double = 2
-    case tetral = 4
+    case quadruple = 4
 }
 
-class Playground {
+public class Playground {
     public static let current = Playground()
-    private init() { }
+
+    let worldView = WorldView()
+
+    private init() {
+        PlaygroundPage.current.liveView = worldView
+    }
 
     func showError(_ error: Error) {
-
+        
     }
 
     var speed: SpeedConfig = .normal
     var world: World? {
         didSet {
-
+            worldView.reloadData()
         }
     }
 }

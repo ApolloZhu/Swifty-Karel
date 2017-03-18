@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 extension Int {
     public static func random(from start: Int, to end: Int) -> Int {
@@ -9,8 +10,9 @@ extension Int {
     }
 }
 
-import Foundation
-import UIKit
+extension UIColor {
+    public static let tianyi: UIColor = UIColor(red: 0.4, green: 0.8, blue: 1, alpha: 1)
+}
 
 public enum MapDirection: Int {
     case north, east, south, west
@@ -37,6 +39,7 @@ public enum Direction: Int {
 }
 
 public struct Point {
+    public static let zero = Point(0,0)
     public let x, y: Int
     init(_ x: Int = 0, _ y: Int = 0) { self.x = x;self.y = y }
     init(_ point: CGPoint) { self.init(Int(point.x),Int(point.y)) }
