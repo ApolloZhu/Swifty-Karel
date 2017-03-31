@@ -51,11 +51,14 @@ public enum Direction: Int {
     case front,right,back,left
 }
 
-public struct Point {
+public struct Point: CustomStringConvertible {
     public static let zero = Point(0,0)
     public var x, y: Int
-    init(_ x: Int = 0, _ y: Int = 0) { self.x = abs(x);self.y = abs(y) }
-    init(_ point: CGPoint) { self.init(Int(point.x),Int(point.y)) }
+    public init(_ x: Int = 0, _ y: Int = 0) { self.x = abs(x);self.y = abs(y) }
+    public init(_ point: CGPoint) { self.init(Int(point.x),Int(point.y)) }
+    public var description: String {
+        return "\(x) \(y)"
+    }
 }
 
 enum KarelError: Error {

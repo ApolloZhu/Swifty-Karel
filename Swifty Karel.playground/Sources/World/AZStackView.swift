@@ -15,4 +15,8 @@ public class AZStackView: UIStackView {
         distribution = .equalCentering
         alignment = .center
     }
+
+    func reloadData() {
+        //TODO: Reload Data
+    }
 }

@@ -47,7 +47,7 @@ public class Karel: UIImageView {
     // MARK: World
     public var position = Point.zero
     private var cornor: Corner {
-        return World.current.corners[position.x][position.y]
+        return Playground.current.worldView.corners[position.x][position.y]
     }
     public var facing = MapDirection.east
 
@@ -62,10 +62,11 @@ public class Karel: UIImageView {
 
     func move() {
         animate { this in
-//            guard !this.isBlocked else {
-//                // This also include situation which karel is at the edge
-//                return KarelError.beenBlocked(at: this.position, facing: this.facing).show()
-//            }
+            //FIXME: Implement world first
+            //            guard !this.isBlocked else {
+            //                // This also include situation which karel is at the edge
+            //                return KarelError.beenBlocked(at: this.position, facing: this.facing).show()
+            //            }
             switch this.facing {
             case .west:
                 this.frame.origin.x -= this.frame.width
@@ -85,7 +86,7 @@ public class Karel: UIImageView {
 
     func turnLeft() {
         animate { this in
-            let transform = CGAffineTransform(rotationAngle: -.pi/2.0)
+            let transform = this.layer.affineTransform().rotated(by: -.pi/2.0)
             this.layer.setAffineTransform(transform)
             this.facing.turnLeft()
         }
@@ -93,7 +94,7 @@ public class Karel: UIImageView {
 
     func turnRight() {
         animate { this in
-            let transform = CGAffineTransform(rotationAngle: .pi/2.0)
+            let transform = this.layer.affineTransform().rotated(by: .pi/2.0)
             this.layer.setAffineTransform(transform)
             this.facing.turnRight()
         }
@@ -101,7 +102,7 @@ public class Karel: UIImageView {
 
     public func turnAround() {
         animate { this in
-            let transform = CGAffineTransform(rotationAngle: .pi)
+            let transform = this.layer.affineTransform().rotated(by: .pi)
             this.layer.setAffineTransform(transform)
             this.facing.turnLeft()
             this.facing.turnLeft()

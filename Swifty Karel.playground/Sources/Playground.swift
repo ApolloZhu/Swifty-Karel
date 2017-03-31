@@ -10,18 +10,28 @@ enum SpeedConfig: Double {
 
 public class Playground {
     public static let current = Playground()
+    public var page: PlaygroundPage { return .current }
     private init() { }
 
-    public var worldView = World() {
+    public var worldView = WorldView() {
         didSet {
             worldView.reloadData()
         }
     }
     public let viewController = UIViewController()
 
-    public func live() {
+    public func live(worldModel: WorldModel) {
+
         PlaygroundPage.current.liveView = viewController
         viewController.view = worldView
+    }
+
+    public func showInfo(_ info: String) {
+        viewController.view.addSubview(PKHUDSquareBaseView(image: nil, title: info, subtitle: nil))
+        let label = UILabel(frame: CGRect(origin: .zero, size: CGSize(side: 100)))
+        label.text = info
+        label.textColor = .white
+        viewController.view.addSubview(label)
     }
 
     public func showError(_ error: Error) {
@@ -30,6 +40,9 @@ public class Playground {
 
     var speed: SpeedConfig = .double
     var duration: Double { return 1/speed.rawValue }
+    public func saveWorld(withName name: String) {
+        //TODO: Save world
+    }
 }
 
 //

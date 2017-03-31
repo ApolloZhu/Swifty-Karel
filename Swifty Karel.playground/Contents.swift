@@ -1,9 +1,27 @@
-//: Playground - noun: a place where people can play
-
 import UIKit
 import PlaygroundSupport
 
-let karel = Karel(frame: CGRect(origin: .zero, size: CGSize(width: 200, height: 200)))
-let corner = Corner(.zero, size: 200, backgroundColor: .green)
-corner.addSubview(karel)
-PlaygroundPage.current.liveView = corner
+/*:
+ # Karel the Robot Learns Swift
+ ![](karel.png)
+ */
+
+//#-hidden-code
+Playground.current.worldView.frame = CGRect(origin: .zero, size: CGSize(side: 400))
+Karel.current.frame.size = CGSize(side: 100)
+Playground.current.live(worldModel: WorldModel(streets: 3, avenues: 3))
+//#-end-hidden-code
+
+//#-editable-code
+move()
+turnRight()
+move()
+turnLeft()
+move()
+turnAround()
+move()
+//#-end-editable-code
+
+WorldModel(streets: 3, avenues: 3).makeKarel(at: .zero, facing: .north).addWall(from: Point(1,3), to: Point(2,3)).save(withName: "temp")
+
+WorldModel.named("temp")
