@@ -1,22 +1,18 @@
 import UIKit
 
-class AZStackView: UIStackView {
-    override init(frame: CGRect) {
+public class AZStackView: UIStackView {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         setup()
-        reloadData()
     }
 
-    required init(coder: NSCoder) {
+    required public init(coder: NSCoder) {
         super.init(coder: coder)
         setup()
-        reloadData()
     }
 
     func setup() {
         distribution = .equalCentering
         alignment = .center
     }
-
-    func reloadData() { }
 }

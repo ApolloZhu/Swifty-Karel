@@ -10,19 +10,19 @@ import Foundation
 import UIKit
 
 public class Corner: UIView {
-    private(set) var beeperView = BeeperView()
+    private var beeperView = BeeperView()
     var street, avenue: Int
     public private(set) var blocked: [MapDirection]?
 
     public init(street: Int, avenue: Int, size: Int = 0, backgroundColor: UIColor? = nil, blockedInDirections directions: [MapDirection]? = nil) {
         self.street = street
         self.avenue = avenue
-        super.init(frame: CGRect(origin: .zero, size: CGSize(width: size, height: size)))
+        super.init(frame: CGRect(origin: .zero, size: CGSize(side: size)))
         self.backgroundColor = backgroundColor
         blocked = directions
     }
 
-    convenience public init(_ point: Point, size: Int = 0,backgroundColor: UIColor? = nil, blockedInDirections directions: [MapDirection]? = nil) {
+    convenience public init(_ point: Point, size: Int = 0, backgroundColor: UIColor? = nil, blockedInDirections directions: [MapDirection]? = nil) {
         self.init(street:point.x,avenue:point.y, size:size, backgroundColor: backgroundColor, blockedInDirections: directions)
     }
 
@@ -30,6 +30,21 @@ public class Corner: UIView {
         street = 0
         avenue = 0
         super.init(coder: aDecoder)
+    }
+
+    public var beeperCount: Int {
+        return Int(beeperView.beeperCount)
+    }
+
+    public func pickBeeper() throws {
+        if beeperView.beeperCount == 0 {
+            throw KarelError.noBeeper
+        }
+        beeperView.beeperCount -= 1
+    }
+
+    public func putBeeper() {
+        beeperView.beeperCount += 1
     }
 
     public func block(directions: MapDirection...) {

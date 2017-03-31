@@ -1,7 +1,7 @@
 import UIKit
 
 class BeeperView: UIView {
-    var beeperCount: Int = 0 { didSet { setNeedsDisplay() } }
+    var beeperCount: UInt = 0 { didSet { setNeedsDisplay() } }
     private(set) lazy var beeperLabel: UILabel = {
         let label = UILabel()
         self.addSubview(label)
@@ -15,6 +15,7 @@ class BeeperView: UIView {
 
     override func draw(_ rect: CGRect) {
         super.draw(rect)
+        beeperLabel.frame = bounds
         if beeperCount > 0 {
             let path = UIBezierPath()
 
