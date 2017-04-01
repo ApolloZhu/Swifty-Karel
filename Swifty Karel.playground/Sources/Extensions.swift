@@ -1,29 +1,18 @@
 import Foundation
 import UIKit
 
-extension Int {
-    public static func random(from start: Int, to end: Int) -> Int {
-        return Int(arc4random_uniform(UInt32(end)))*(end-start)+start
-    }
-    public static func random(from start: Int, through end: Int) -> Int {
-        return random(from: start, to: end+1)
-    }
-}
-
 extension UIColor {
     public static let tianyi = UIColor(red: 0.4, green: 0.8, blue: 1, alpha: 1)
+    public static let background = UIColor(red: 0.97, green: 0.97, blue: 0.97, alpha: 1.00)
 }
 
 extension CGSize {
-    public init<T: Integer>(side: T) {
-        self.init(width: side as! Int, height: side as! Int)
-    }
-    public init<T: FloatingPoint>(side: T) {
-        self.init(width: side as! Double, height: side as! Double)
+    public init(side: CGFloat) {
+        self.init(width: side, height: side)
     }
 }
 
-public enum MapDirection: Int {
+public enum GeologicalDirection: Int {
     case north, east, south, west
     mutating func turnLeft() {
         switch self {
@@ -41,9 +30,9 @@ public enum MapDirection: Int {
         case .west: self = .north
         }
     }
-    func mapDirection(whenFacing direction: Direction) -> MapDirection {
+    func geologicalDirection(whenFacing direction: Direction) -> GeologicalDirection {
         // We are always facing front
-        return MapDirection(rawValue: (rawValue + direction.rawValue) % 4)!
+        return GeologicalDirection(rawValue: (rawValue + direction.rawValue) % 4)!
     }
 }
 
@@ -53,21 +42,46 @@ public enum Direction: Int {
 
 public struct Point: CustomStringConvertible {
     public static let zero = Point(0,0)
-    public var x, y: Int
-    public init(_ x: Int = 0, _ y: Int = 0) { self.x = abs(x);self.y = abs(y) }
-    public init(_ point: CGPoint) { self.init(Int(point.x),Int(point.y)) }
+    public internal(set) var x, y: Int
+
+    public init(_ x: Int = 0, _ y: Int = 0) {
+        self.x = abs(x)
+        self.y = abs(y)
+    }
+    public init(_ x: CGFloat = 0, _ y: CGFloat = 0) {
+        self.init(Int(x), Int(y))
+    }
+    public init(_ point: CGPoint) {
+        self.init(point.x,point.y)
+    }
+    public init(_ x: Double, _ y: Double) {
+        self.init(Int(x), Int(y))
+    }
     public var description: String {
         return "\(x) \(y)"
+    }
+    public func cgPoint(scaledBy scale: CGFloat = 1) -> CGPoint {
+        return CGPoint(x: scale*CGFloat(x), y: scale*CGFloat(y))
     }
 }
 
 enum KarelError: Error {
-    case beenBlocked(at: Point, facing: MapDirection)
+    case beenBlocked(at: Point, facing: GeologicalDirection)
     case noBeeper
 }
 
 extension Error {
     func show() {
         Playground.current.showError(self)
+    }
+}
+
+extension CGRect {
+
+}
+
+extension Bool {
+    static func ^(lhs: Bool, rhs: Bool) -> Bool {
+        return lhs != rhs
     }
 }

@@ -2,7 +2,7 @@ import UIKit
 
 public class Karel: UIImageView {
     // MARK: Setup
-    public class var current: Karel {
+    class var current: Karel {
         return Playground.current.worldView.karelView
     }
 
@@ -29,7 +29,7 @@ public class Karel: UIImageView {
     private func setup() {
         image = UIImage(named: "karel")
         contentMode = .scaleAspectFit
-        backgroundColor = .yellow
+        backgroundColor = .tianyi
     }
 
     // MARK: Animation
@@ -45,28 +45,28 @@ public class Karel: UIImageView {
     }
 
     // MARK: World
-    public var position = Point.zero
+    var position = Point.zero
     private var cornor: Corner {
         return Playground.current.worldView.corners[position.x][position.y]
     }
-    public var facing = MapDirection.east
+    var facing = GeologicalDirection.east
 
     // Mark: Features
-    public var isBlocked: Bool {
+    var isBlocked: Bool {
         return cornor.blocked?.contains(facing) ?? false
     }
 
-    public func isClear(at direction: Direction) -> Bool {
-        return cornor.blocked?.contains(facing.mapDirection(whenFacing: direction)) != true
+    func isClear(at direction: Direction) -> Bool {
+        return cornor.blocked?.contains(facing.geologicalDirection(whenFacing: direction)) != true
     }
 
     func move() {
         animate { this in
             //FIXME: Implement world first
-            //            guard !this.isBlocked else {
-            //                // This also include situation which karel is at the edge
-            //                return KarelError.beenBlocked(at: this.position, facing: this.facing).show()
-            //            }
+            guard !this.isBlocked else {
+                // This also include situation which karel is at the edge
+                fatalError(KarelError.beenBlocked(at: this.position, facing: this.facing).localizedDescription)
+            }
             switch this.facing {
             case .west:
                 this.frame.origin.x -= this.frame.width
@@ -76,10 +76,10 @@ public class Karel: UIImageView {
                 this.position.x += 1
             case .north:
                 this.frame.origin.y -= this.frame.height
-                this.position.y -= 1
+                this.position.y += 1
             case .south:
                 this.frame.origin.y += this.frame.height
-                this.position.y += 1
+                this.position.y -= 1
             }
         }
     }
@@ -100,7 +100,7 @@ public class Karel: UIImageView {
         }
     }
 
-    public func turnAround() {
+    func turnAround() {
         animate { this in
             let transform = this.layer.affineTransform().rotated(by: .pi)
             this.layer.setAffineTransform(transform)
@@ -109,11 +109,11 @@ public class Karel: UIImageView {
         }
     }
 
-    public var isOnBeeper: Bool {
+    var isOnBeeper: Bool {
         return cornor.beeperCount > 0
     }
 
-    public func pickBepper(count: Int = 1) {
+    func pickBepper(count: Int = 1) {
         for _ in 0..<count {
             do {
                 try cornor.pickBeeper()
@@ -123,31 +123,31 @@ public class Karel: UIImageView {
         }
     }
 
-    public func putBeeper(count: Int = 1) {
+    func putBeeper(count: Int = 1) {
         for _ in 0..<count {
             cornor.putBeeper()
         }
     }
 
-    public var colorOfBlock: UIColor {
+    var colorOfBlock: UIColor {
         return cornor.backgroundColor ?? .clear
     }
 
-    public func paintBlock(color: UIColor) {
+    func paintBlock(color: UIColor) {
         cornor.backgroundColor = color
     }
 }
 
 extension Karel {
-    public func isBlocked(at direction: Direction) -> Bool {
+    func isBlocked(at direction: Direction) -> Bool {
         return !isClear(at: direction)
     }
 
-    public func isFacing(_ direction: MapDirection) -> Bool {
+    func isFacing(_ direction: GeologicalDirection) -> Bool {
         return facing == direction
     }
 
-    public func isNotFacing(_ direction: MapDirection) -> Bool {
+    func isNotFacing(_ direction: GeologicalDirection) -> Bool {
         return !isFacing(direction)
     }
 }
