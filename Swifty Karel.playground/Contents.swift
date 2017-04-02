@@ -35,7 +35,7 @@ for i in 0..<2 {
     }
 }
 paintCorner(color: .green)
-Playground.current.colorScheme = .default
+Playground.current.colorScheme = .dusk
 Playground.current.saveAsWorldModel(withName: "World")
 Playground.current.show(worldModel: WorldModel.named("World")!)
 //#-end-editable-code
