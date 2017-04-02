@@ -12,6 +12,25 @@ extension CGSize {
     }
 }
 
+extension UIEdgeInsets {
+    public init(side: CGFloat) {
+        self.init(top: side, left: side, bottom: side, right: side)
+    }
+}
+
+extension CGRect {
+    func max(ratio: Point, insect: UIEdgeInsets = .zero) -> (frame: CGRect, side: CGFloat) {
+        let w = width - insect.left - insect.right
+        let h = height - insect.top - insect.bottom
+        let c_x = CGFloat(ratio.x)
+        let c_y = CGFloat(ratio.y)
+        let side = min(w/c_x,h/c_y)
+        let aW = side * c_x
+        let aH = side * c_y
+        return (CGRect(x: midX - aW/2, y: midY - aH/2, width: aW, height: aH), side)
+    }
+}
+
 public enum GeologicalDirection: Int {
     case north, east, south, west
     mutating func turnLeft() {
@@ -40,7 +59,7 @@ public enum Direction: Int {
     case front,right,back,left
 }
 
-public struct Point: CustomStringConvertible {
+public struct Point: CustomStringConvertible, CustomDebugStringConvertible {
     public static let zero = Point(0,0)
     public static let origin = Point(1,1)
     public internal(set) var x, y: Int
@@ -58,32 +77,14 @@ public struct Point: CustomStringConvertible {
     public init(_ x: Double, _ y: Double) {
         self.init(Int(x), Int(y))
     }
-    public var description: String {
+    public var debugDescription: String {
         return "\(x) \(y)"
+    }
+    public var description: String {
+        return "(\(x), \(y))"
     }
     public func cgPoint(scaledBy scale: CGFloat = 1) -> CGPoint {
         return CGPoint(x: scale*CGFloat(x), y: scale*CGFloat(y))
-    }
-}
-
-enum KarelError: Error {
-    case beenBlocked(at: Point, facing: GeologicalDirection)
-    case noBeeper
-    var localizedDescription: String {
-        switch self {
-        case .noBeeper:
-            return "Karel is trying to pick up nothing"
-        case .beenBlocked(let point, facing):
-            return "Karel is blocked at (\(point.x), \(point.y)), facing \(facing)"
-        default:
-            return "Karel is %^$#$*#^$&"
-        }
-    }
-}
-
-extension Error {
-    func show() {
-        Playground.current.showError(self)
     }
 }
 
@@ -99,11 +100,12 @@ protocol Coordinated {
 }
 
 extension Coordinated where Self: UIView {
-    func showCoordinate(autoHide: Bool = false) {
+    func showCoordinates(autoHide: Bool = false) {
         let label = UILabel()
         label.text = "(\(street), \(avenue))"
         label.frame = CGRect(origin: .zero, size: CGSize(side: frame.width))
         label.textAlignment = .center
+        label.tag = Playground.identifier
         addSubview(label)
         if autoHide {
             UIView.animate(withDuration: Playground.current.duration, delay: Playground.current.duration * 3, animations: {
@@ -111,5 +113,12 @@ extension Coordinated where Self: UIView {
             })
         }
     }
-}
 
+    func removeCoordinates() {
+        subviews.lazy.forEach {
+            if $0.tag == Playground.identifier {
+                $0.removeFromSuperview()
+            }
+        }
+    }
+}

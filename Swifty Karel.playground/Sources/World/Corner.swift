@@ -2,7 +2,9 @@ import UIKit
 
 public class Corner: UIView, Coordinated {
     private var beeperView = BeeperView()
-    var street, avenue: Int
+    var point: Point
+    var street: Int { return point.x }
+    var avenue: Int { return point.y }
     public private(set) var blocked: [GeologicalDirection]?
 
     public var borderColor: UIColor {
@@ -17,20 +19,22 @@ public class Corner: UIView, Coordinated {
         }
     }
 
-    public init(street: Int, avenue: Int, frame: CGRect, backgroundColor: UIColor? = .white, blockedInDirections directions: [GeologicalDirection]? = nil) {
-        self.street = street
-        self.avenue = avenue
+    public convenience init(street: Int, avenue: Int, frame: CGRect, backgroundColor: UIColor? = .white, blockedInDirections directions: [GeologicalDirection]? = nil) {
+        self.init(point:Point(street,avenue), frame: frame, backgroundColor: backgroundColor, blockedInDirections: directions)
+    }
+
+    public init(point: Point, frame: CGRect, backgroundColor: UIColor? = .white, blockedInDirections directions: [GeologicalDirection]? = nil) {
+        self.point = point
         borderColor = .black
         borderWidth = 3
         super.init(frame: frame)
         self.backgroundColor = backgroundColor
         blocked = directions
+        beeperView.frame = bounds
+        beeperView.backgroundColor = .clear
+        addSubview(beeperView)
     }
 
-    convenience public init(_ point: Point, frame: CGRect, backgroundColor: UIColor? = .white, blockedInDirections directions: [GeologicalDirection]? = nil) {
-        self.init(street:point.x,avenue:point.y, frame: frame, backgroundColor: backgroundColor, blockedInDirections: directions)
-    }
-    
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -41,7 +45,7 @@ public class Corner: UIView, Coordinated {
 
     public func pickBeeper() throws {
         if beeperView.beeperCount == 0 {
-            throw KarelError.noBeeper
+            throw KarelError.noBeeper(at: point)
         }
         beeperView.beeperCount -= 1
     }
@@ -85,6 +89,6 @@ public class Corner: UIView, Coordinated {
     }
 
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        showCoordinate(autoHide: true)
+        showCoordinates(autoHide: true)
     }
 }

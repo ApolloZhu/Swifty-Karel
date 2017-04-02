@@ -1,21 +1,13 @@
 import UIKit
 
 class WorldView: UIView {
+    static var current: WorldView {
+        return Playground.current.worldView
+    }
     public var karelView = Karel()
     public let streets, avenues: Int
     public let worldModel: WorldModel
     private let blockSize: CGFloat
-
-    private static func maxRect(in rect: CGRect, street: Int, avenue: Int, insect: UIEdgeInsets = .zero) -> (frame: CGRect, side: CGFloat) {
-        let w = rect.width - insect.left - insect.right
-        let h = rect.height - insect.top - insect.bottom
-        let c_x = CGFloat(avenue)
-        let c_y = CGFloat(street)
-        let side = min(w/c_x,h/c_y)
-        let aW = side * c_x
-        let aH = side * c_y
-        return (CGRect(x: rect.midX - aW/2, y: rect.midY - aH/2, width: aW, height: aH), side)
-    }
 
     public init() {
         streets = 0
@@ -29,7 +21,7 @@ class WorldView: UIView {
         worldModel = model
         streets = model.streetsCount
         avenues = model.avenuesCount
-        let (frame, cornerSize) = WorldView.maxRect(in: rect, street: streets, avenue: avenues)
+        let (frame, cornerSize) = rect.max(ratio: Point(avenues,streets))
         blockSize = cornerSize
         super.init(frame: frame)
         karelView.position = worldModel.karel.point
@@ -50,8 +42,8 @@ class WorldView: UIView {
         karelView.frame = CGRect(origin: realCorner(from: karel.position).cgPoint(scaledBy: blockSize),
                                  size: CGSize(side: blockSize))
 
-        corners = (1...streets).map { street in
-            (1...avenues).map { avenue in
+        corners = (1...streets).lazy.map { street in
+            (1...avenues).lazy.map { avenue in
                 let c = Corner(street: street, avenue: avenue,
                                frame: CGRect(origin: realCorner(from: Point(street, avenue)).cgPoint(scaledBy: blockSize),
                                              size: CGSize(side: blockSize)))
@@ -96,8 +88,8 @@ class WorldView: UIView {
     }
 
     private func redraw() {
-        corners.forEach {
-            $0.forEach {
+        corners.lazy.forEach {
+            $0.lazy.forEach {
                 $0.setNeedsDisplay()
             }
         }

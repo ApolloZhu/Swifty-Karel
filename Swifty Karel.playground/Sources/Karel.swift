@@ -15,23 +15,16 @@ public class Karel: UIView, Coordinated {
             imageView.image = image
             imageView.contentMode = .scaleAspectFit
             addSubview(imageView)
-            showCoordinate()
         }
     }
 
     // MARK: Animation
     private var count = 0.0
-    private func animate(by animation: @escaping (Karel) -> Void) {
+    fileprivate func animate(by animation: @escaping (Karel) -> Void) {
         count += 1
         UIView.animate(withDuration: Playground.current.duration, delay: Playground.current.duration * count, options: .curveEaseInOut, animations: { [weak self] in
             if let this = self {
-                this.subviews.forEach {
-                    if $0 is UILabel {
-                        $0.removeFromSuperview()
-                    }
-                }
                 animation(this)
-                this.showCoordinate()
             }}
         )
     }
@@ -48,7 +41,7 @@ public class Karel: UIView, Coordinated {
     }
 
     private var corner: Corner {
-        return Playground.current.worldView.corners[street-1][avenue-1]
+        return WorldView.current.corners[street-1][avenue-1]
     }
     private(set) var facing = GeologicalDirection.east
     func setFacing(_ newValue: GeologicalDirection) {
@@ -69,8 +62,7 @@ public class Karel: UIView, Coordinated {
     func move() {
         animate { this in
             guard !this.isBlocked else {
-                // This also include situation which karel is at the edge
-                fatalError(KarelError.beenBlocked(at: this.position, facing: this.facing).localizedDescription)
+                return KarelError.beenBlocked(at: this.position, facing: this.facing).show()
             }
             switch this.facing {
             case .west:
@@ -88,7 +80,6 @@ public class Karel: UIView, Coordinated {
             case .south:
                 this.frame.origin.y += this.frame.height
                 this.street -= 1
-
             }
         }
     }
@@ -157,8 +148,65 @@ extension Karel {
     func isFacing(_ direction: GeologicalDirection) -> Bool {
         return facing == direction
     }
-    
+
     func isNotFacing(_ direction: GeologicalDirection) -> Bool {
         return !isFacing(direction)
     }
 }
+
+extension Karel {
+    public func alert(_ info: String) {
+        let liveView = Playground.current.liveView
+        let frame = CGRect(origin: liveView.center, size: .zero)
+
+        let cover = UIView(frame: frame)
+        cover.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.7)
+        cover.tag = Playground.identifier
+
+        let label = UILabel(frame: frame)
+        label.tag = Playground.identifier
+        label.text = info
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.layer.masksToBounds = true
+        label.layer.cornerRadius = 10
+        label.backgroundColor = .background
+        label.alpha = 0.9
+        animate { _ in
+            liveView.subviews.lazy.forEach {
+                if $0.tag == Playground.identifier {
+                    $0.removeFromSuperview()
+                }
+            }
+            liveView.addSubview(cover)
+            liveView.addSubview(label)
+            cover.frame = liveView.bounds
+            label.frame = liveView.bounds.max(ratio: Point(16,9), insect: UIEdgeInsets(side: 20)).frame
+        }
+    }
+}
+
+extension Error {
+    func show() {
+        Karel.current.alert(self.localizedDescription)
+    }
+}
+
+enum KarelError: Error, LocalizedError {
+    case beenBlocked(at: Point, facing: GeologicalDirection)
+    case noBeeper(at: Point)
+    var errorDescription: String? {
+        switch self {
+        case .noBeeper(let point):
+            return "Karel is trying to pick up nothing at \(point)"
+        case .beenBlocked(let point, facing):
+            return "Karel is blocked at \(point), facing \(facing)"
+        default:
+            return "Karel %^$#*#^$&!"
+        }
+    }
+}
+
+
+
+

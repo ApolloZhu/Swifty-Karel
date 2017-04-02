@@ -86,12 +86,12 @@ extension WorldModel {
          Wx1 Wy1 Wx2 Wy2
          ...
          */
-        var out = "\(streetsCount) \(avenuesCount) \(karel.point) \(karel.facing.rawValue)\n"
+        var out = "\(streetsCount) \(avenuesCount) \(karel.point.debugDescription) \(karel.facing.rawValue)\n"
         for beeper in beepers {
-            out += "\(beeper.corner) \(beeper.count)\n"
+            out += "\(beeper.corner.debugDescription) \(beeper.count)\n"
         }
         for wall in walls {
-            out += "\(wall.start) \(wall.end)\n"
+            out += "\(wall.start.debugDescription) \(wall.end.debugDescription)\n"
         }
         for block in colored {
             var r: CGFloat = 0
@@ -99,12 +99,12 @@ extension WorldModel {
             var b: CGFloat = 0
             var a: CGFloat = 0
             block.color.getRed(&r, green: &g, blue: &b, alpha: &a)
-            out += "\(block.corner) \(r) \(g) \(b) \(a)\n"
+            out += "\(block.corner.debugDescription) \(r) \(g) \(b) \(a)\n"
         }
         do {
             let url = name.karelWorldURL
             try out.write(to: url, atomically: true, encoding: .utf8)
-            Playground.current.showInfo("Saved to \(url.absoluteURL)")
+            Karel.current.alert("Saved to \(url.absoluteURL)")
         } catch {
             error.show()
         }
@@ -143,7 +143,7 @@ extension WorldModel: CustomPlaygroundQuickLookable {
     public var customPlaygroundQuickLook: PlaygroundQuickLook {
         let view = WorldView(model: self, in: CGRect(origin: .zero, size: CGSize(side: 400)))
         view.layout()
-        view.karelView.image = Playground.current.karelImage
+        view.karelView.image = UIImage(named: "karel.png")
         return .view(view)
     }
 }

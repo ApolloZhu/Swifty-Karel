@@ -9,25 +9,26 @@ class BeeperView: UIView {
         label.textAlignment = .center
         return label
     }()
-    var stroke: UIColor = .tianyi { didSet { setNeedsDisplay(); beeperLabel.textColor = stroke } }
+    var stroke: UIColor = .background { didSet { setNeedsDisplay(); beeperLabel.textColor = stroke } }
     var lineWidth: CGFloat = 5 { didSet { setNeedsDisplay() } }
     var fill: UIColor = .tianyi { didSet { setNeedsDisplay() } }
 
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-        beeperLabel.frame = bounds
         if beeperCount > 0 {
             let path = UIBezierPath()
-            path.move(to: CGPoint(x: frame.midX, y: frame.minY))
-            path.addLine(to: CGPoint(x: frame.minX, y: frame.midY))
-            path.addLine(to: CGPoint(x: frame.midX, y: frame.maxY))
+            path.move(to: CGPoint(x: bounds.midX, y: bounds.minY + lineWidth))
+            path.addLine(to: CGPoint(x: bounds.minX + lineWidth, y: bounds.midY))
+            path.addLine(to: CGPoint(x: bounds.midX, y: bounds.maxY - lineWidth))
+            path.addLine(to: CGPoint(x: bounds.maxX - lineWidth, y: bounds.midY))
             path.close()
             stroke.setStroke()
             fill.setFill()
             path.lineWidth = lineWidth
+            path.lineJoinStyle = .round
+            path.lineCapStyle = .round
             path.stroke()
             path.fill()
-            fatalError("Hi")
         }
 
         if beeperCount > 1 {

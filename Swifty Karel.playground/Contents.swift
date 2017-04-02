@@ -9,6 +9,7 @@ Playground.current.show(worldModel: model)
 //#-end-hidden-code
 
 //#-editable-code
+pickBeeper()
 turnRight()
 move()
 turnLeft()
@@ -21,6 +22,12 @@ while isBlocked {
     turnLeft()
 }
 paintCorner(color: .yellow)
-move()
+for i in 0..<2 {
+    move()
+    for _ in 0...i {
+        putBeeper()
+    }
+}
+paintCorner(color: .green)
 move()
 //#-end-editable-code
