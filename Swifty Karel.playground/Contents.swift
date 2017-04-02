@@ -5,8 +5,9 @@
 
 //#-hidden-code
 //Playground.current.colorScheme = .`default`
-Playground.current.showCoordinates = true
-Playground.current.karelImage = #imageLiteral(resourceName: "Origin.png")
+//Playground.current.showCoordinates = true
+//Playground.current.karelImage = #imageLiteral(resourceName: "Origin.png")
+//Playground.current.speed = .custom(scale: 3)
 
 let model = WorldModel(streets: 3, avenues: 3).makeKarel(at: Point(1,1), facing: .north).addWall(from: Point(0,2), to: Point(1,2))
 Playground.current.show(worldModel: model)
@@ -25,7 +26,8 @@ move()
 while isBlocked {
     turnLeft()
 }
-paintCorner(color: .yellow)
+paintCorner(color: .tianyi)
+putBeeper()
 for i in 0..<2 {
     move()
     for _ in 0...i {
@@ -33,5 +35,6 @@ for i in 0..<2 {
     }
 }
 paintCorner(color: .green)
+Playground.current.saveAsImage(withName: "Test")
 move()
 //#-end-editable-code
