@@ -123,3 +123,27 @@ extension Coordinated where Self: UIView {
         }
     }
 }
+
+public struct CachedViewable {
+    public let content: UIView
+    public let path: String
+}
+
+extension CachedViewable: CustomPlaygroundQuickLookable {
+    public var customPlaygroundQuickLook: PlaygroundQuickLook {
+        let label = UILabel(frame: CGRect(x: 0, y: content.frame.maxY,
+                                          width: content.bounds.width, height: 50))
+        label.text = path
+        label.numberOfLines = 0
+        label.sizeToFit()
+
+        let view = UIView(frame:
+            CGRect(origin: .zero,
+                   size: CGSize(width: content.frame.width,
+                                height: content.frame.height + label.frame.height)))
+        view.backgroundColor = .background
+        view.addSubview(content)
+        view.addSubview(label)
+        return .view(view)
+    }
+}

@@ -4,7 +4,7 @@
  */
 
 //#-hidden-code
-//Playground.current.colorScheme = .`default`
+//Playground.current.colorScheme = .default
 //Playground.current.showCoordinates = true
 //Playground.current.karelImage = #imageLiteral(resourceName: "Origin.png")
 //Playground.current.speed = .custom(scale: 3)
@@ -35,6 +35,7 @@ for i in 0..<2 {
     }
 }
 paintCorner(color: .green)
-Playground.current.saveAsImage(withName: "Test")
-move()
+Playground.current.colorScheme = .default
+Playground.current.saveAsWorldModel(withName: "World")
+Playground.current.show(worldModel: WorldModel.named("World")!)
 //#-end-editable-code

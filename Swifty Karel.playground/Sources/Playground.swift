@@ -54,7 +54,7 @@ public class Playground {
     public var colorScheme: ColorScheme {
         didSet {
             if worldView.worldModel !== WorldModel.invalid {
-                show(worldModel: worldView.worldModel)
+                show(worldModel: clonedWorldModel(bgColor: oldValue.cornerBackgroundColor))
             }
         }
     }
@@ -78,7 +78,7 @@ public class Playground {
     public var speed: SpeedConfig = .double
     var duration: Double { return 1/speed.rawValue }
 
-    public func saveAsImage(withName name: String) -> CachedImage? {
+    public func saveAsImage(withName name: String) -> CachedViewable? {
         defer { UIGraphicsEndImageContext() }
         UIGraphicsBeginImageContext(worldView.frame.size)
         if let context = UIGraphicsGetCurrentContext() {
@@ -88,32 +88,32 @@ public class Playground {
                 do {
                     let url = URL(fileURLWithPath: "\(name).png")
                     try png.write(to: url)
-                    return CachedImage(image: image, path: url.path)
+                    return CachedViewable(content: UIImageView(image: image), path: url.path)
                 } catch { }
             }
         }
         return nil
     }
-}
 
-public struct CachedImage {
-    public let image: UIImage
-    public let path: String
-}
+    func clonedWorldModel(bgColor: UIColor = Playground.current.colorScheme.cornerBackgroundColor) -> WorldModel {
+        let model = worldView.worldModel.copy()
+        model.makeKarel(at: Karel.current.position, facing: Karel.current.facing)
+        worldView.corners.forEach {
+            $0.forEach {
+                if let color = $0.backgroundColor, color != bgColor {
+                    model.setColor(color, for: $0.point)
+                }
+                if $0.beeperCount > 0 {
+                    model.setBeeperCount(for: $0.point, to: $0.beeperCount)
+                }
 
-extension CachedImage: CustomPlaygroundQuickLookable {
-    public var customPlaygroundQuickLook: PlaygroundQuickLook {
-        let view = UIView(frame: CGRect(origin: .zero, size: image.size))
-        view.backgroundColor = .background
-        let imageView = UIImageView(image: image)
-        view.addSubview(imageView)
-        let label = UILabel(frame: CGRect(x: 0, y: imageView.frame.maxY, width: imageView.bounds.width, height: 50))
-        label.text = path
-        label.numberOfLines = 0
-        label.sizeToFit()
-        view.frame.size.height += label.frame.height
-        view.addSubview(label)
-        return .view(view)
+            }
+        }
+        return model
+    }
+
+    public func saveAsWorldModel(withName name: String) -> CachedViewable? {
+        return clonedWorldModel().save(withName: name)
     }
 }
 

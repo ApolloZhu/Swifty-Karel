@@ -51,6 +51,14 @@ class WorldView: UIView {
                 return c
             }
         }
+        for beeper in worldModel.beepers.lazy {
+            for _ in 0..<beeper.count {
+                corners[beeper.corner.x-1][beeper.corner.y-1].putBeeper()
+            }
+        }
+        for colored in worldModel.colored.lazy {
+            corners[colored.corner.x-1][colored.corner.y-1].backgroundColor = colored.color
+        }
         setWalls()
         addSubview(karelView)
     }
