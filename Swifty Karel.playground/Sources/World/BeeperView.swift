@@ -10,7 +10,7 @@ class BeeperView: UIView {
         label.textColor = Playground.current.colorScheme.bepperCountColor
         return label
     }()
-
+    
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         if beeperCount > 0 {
@@ -29,7 +29,7 @@ class BeeperView: UIView {
             path.stroke()
             path.fill()
         }
-
+        
         if beeperCount > 1 {
             beeperLabel.isHidden = false
             beeperLabel.text = "\(beeperCount)"

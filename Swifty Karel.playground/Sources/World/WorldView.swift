@@ -8,7 +8,7 @@ class WorldView: UIView {
     public let streets, avenues: Int
     public let worldModel: WorldModel
     private let blockSize: CGFloat
-
+    
     public init() {
         streets = 0
         avenues = 0
@@ -16,7 +16,7 @@ class WorldView: UIView {
         blockSize = 0
         super.init(frame: .zero)
     }
-
+    
     public init(model: WorldModel, in rect: CGRect) {
         worldModel = model
         streets = model.streetsCount
@@ -27,21 +27,21 @@ class WorldView: UIView {
         karelView.position = worldModel.karel.point
         karelView.setFacing(worldModel.karel.facing)
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     private func realCorner(from point: Point) -> Point {
         return Point(point.y - 1, streets - point.x)
     }
-
+    
     var corners = [[Corner]]()
-
+    
     func layout() {
         karelView.frame = CGRect(origin: realCorner(from: karel.position).cgPoint(scaledBy: blockSize),
                                  size: CGSize(side: blockSize))
-
+        
         corners = (1...streets).lazy.map { street in
             (1...avenues).lazy.map { avenue in
                 let c = Corner(street: street, avenue: avenue,
@@ -62,7 +62,7 @@ class WorldView: UIView {
         setWalls()
         addSubview(karelView)
     }
-
+    
     func setWalls() {
         corners[0].forEach { $0.block(directions: .south) }
         corners[streets-1].forEach { $0.block(directions: .north) }
@@ -70,7 +70,7 @@ class WorldView: UIView {
             corners[$0][0].block(directions: .west)
             corners[$0][avenues-1].block(directions: .east)
         }
-
+        
         for wall in worldModel.walls {
             if wall.start.x == wall.end.x {
                 for y in wall.start.y ..< wall.end.y {
@@ -94,7 +94,7 @@ class WorldView: UIView {
         }
         reload()
     }
-
+    
     func reload() {
         corners.lazy.forEach {
             $0.lazy.forEach {

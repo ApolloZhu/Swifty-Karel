@@ -1,10 +1,13 @@
 import PlaygroundSupport
 import UIKit
+import AVFoundation
 
 public class Playground {
     public static let current = Playground()
     static let identifier = 6927
+    
     public var page: PlaygroundPage { return .current }
+    
     private init() {
         if let hour = Calendar.current.dateComponents([.hour], from: Date()).hour,
             hour > 19 || hour < 7 {
@@ -14,7 +17,6 @@ public class Playground {
         }
         PlaygroundPage.current.liveView = viewController
         liveView.backgroundColor = ColorScheme.default.simulatorBackgroundColor
-        liveView.addSubview(HUD.shared.bar)
     }
     var liveView: UIView {
         return viewController.view
@@ -29,7 +31,6 @@ public class Playground {
             if worldView.worldModel !== WorldModel.invalid {
                 show(worldModel: clonedWorldModel(bgColor: oldValue.cornerBackgroundColor))
             }
-            HUD.shared.bar.backgroundColor = colorScheme.hudStyle.rawValue
         }
     }
     public var showCoordinates = false {
@@ -37,10 +38,10 @@ public class Playground {
             worldView.reload()
         }
     }
-
+    
     var worldView = WorldView()
     private let viewController = UIViewController()
-
+    
     public func show(worldModel: WorldModel) {
         worldView.removeFromSuperview()
         liveView.backgroundColor = colorScheme.simulatorBackgroundColor
@@ -48,15 +49,14 @@ public class Playground {
         worldView.layout()
         Karel.current.image = karelImage
         liveView.addSubview(worldView)
-    }
-
-    public var speed: SpeedConfig = .double {
-        didSet {
-            HUD.shared.speedLabel.text = "\(speed.rawValue)x"
+        if isMusicEnabled {
+            backgroundMusicPlayer?.play()
         }
     }
+    
+    public var speed: SpeedConfig = .double
     var duration: Double { return 1/speed.rawValue }
-
+    
     public func saveAsImage(withName name: String) -> CachedViewable? {
         defer { UIGraphicsEndImageContext() }
         UIGraphicsBeginImageContext(worldView.frame.size)
@@ -73,7 +73,7 @@ public class Playground {
         }
         return nil
     }
-
+    
     func clonedWorldModel(bgColor: UIColor = Playground.current.colorScheme.cornerBackgroundColor) -> WorldModel {
         let model = worldView.worldModel.copy()
         model.makeKarel(at: Karel.current.position, facing: Karel.current.facing)
@@ -85,25 +85,35 @@ public class Playground {
                 if $0.beeperCount > 0 {
                     model.setBeeperCount(for: $0.point, to: $0.beeperCount)
                 }
-
+                
             }
         }
         return model
     }
-
+    
     public func saveAsWorldModel(withName name: String) -> CachedViewable? {
         return clonedWorldModel().save(withName: name)
     }
-
-    public var isSoundEnabled = true {
-        didSet {
-            HUD.shared.soundButton.update()
+    lazy var backgroundMusicPlayer: AVAudioPlayer? = {
+        do {
+            let player = try AVAudioPlayer(contentsOf: Bundle.main.url(forResource: "Background", withExtension: "mp3")!)
+            player.numberOfLoops = -1
+            player.prepareToPlay()
+            player.volume = 0.7
+            return player
+        } catch {
+            Karel.current.alert("Can not locate background music file")
+            return nil
         }
-    }
-
+    }()
+    
     public var isMusicEnabled = true {
         didSet {
-            HUD.shared.musicButton.update()
+            if isMusicEnabled {
+                backgroundMusicPlayer?.play()
+            } else {
+                backgroundMusicPlayer?.pause()
+            }
         }
     }
 }

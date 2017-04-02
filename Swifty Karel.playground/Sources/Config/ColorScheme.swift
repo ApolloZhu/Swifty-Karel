@@ -1,19 +1,17 @@
 import UIKit
 
 public struct ColorScheme {
-    let hudStyle: HUDStyle
-    let simulatorBackgroundColor: UIColor
-    let cornerBackgroundColor: UIColor
-    let cornerCoordinatesColor: UIColor
-    let wallColor: UIColor
-    let beeperBorderColor: UIColor
-    let beeperFillColor: UIColor
-    let bepperCountColor: UIColor
+    public let simulatorBackgroundColor: UIColor
+    public let cornerBackgroundColor: UIColor
+    public let cornerCoordinatesColor: UIColor
+    public let wallColor: UIColor
+    public let beeperBorderColor: UIColor
+    public let beeperFillColor: UIColor
+    public let bepperCountColor: UIColor
 }
 
 extension ColorScheme {
     public static let `default` = ColorScheme(
-        hudStyle: .light(background: .background),
         simulatorBackgroundColor: .background,
         cornerBackgroundColor: .white,
         cornerCoordinatesColor: .black,
@@ -22,9 +20,8 @@ extension ColorScheme {
         beeperFillColor: .tianyi,
         bepperCountColor: .black
     )
-
+    
     public static let dusk = ColorScheme.init(
-        hudStyle: .dark(background: UIColor(red: 0.25, green: 0.25, blue: 0.29, alpha: 1)),
         simulatorBackgroundColor: UIColor(red: 0.25, green: 0.25, blue: 0.29, alpha: 1),
         cornerBackgroundColor: UIColor(red: 0.12, green: 0.13, blue: 0.16, alpha: 1),
         cornerCoordinatesColor: UIColor(red: 0.86, green: 0.17, blue: 0.22, alpha: 1),

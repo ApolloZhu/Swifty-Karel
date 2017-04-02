@@ -4,7 +4,7 @@ public enum SpeedConfig: RawRepresentable {
     case double
     case quadruple
     case custom(scale: Double)
-
+    
     public typealias RawValue = Double
     public init?(rawValue: Double) {
         switch rawValue {

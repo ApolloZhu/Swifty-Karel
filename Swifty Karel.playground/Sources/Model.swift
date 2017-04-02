@@ -127,12 +127,12 @@ extension WorldModel {
     }
     public static func byParsing(_ source: String) -> WorldModel? {
         let lines = source.components(separatedBy: .newlines)
-
+        
         guard let info = lines.first?.components(separatedBy: " ").flatMap({ Int($0) }),
             info.count == 5, let direction = GeologicalDirection(rawValue: info[4]) else { return nil }
-
+        
         let world = WorldModel(streets: info[0], avenues: info[1]).makeKarel(at: Point(info[2],info[3]), facing: direction)
-
+        
         lines.lazy.forEach {
             let info = $0.components(separatedBy: .whitespaces).flatMap { Double($0) }
             switch info.count {

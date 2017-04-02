@@ -63,7 +63,7 @@ public struct Point: CustomStringConvertible, CustomDebugStringConvertible {
     public static let zero = Point(0,0)
     public static let origin = Point(1,1)
     public internal(set) var x, y: Int
-
+    
     public init(_ x: Int = 0, _ y: Int = 0) {
         self.x = abs(x)
         self.y = abs(y)
@@ -114,7 +114,7 @@ extension Coordinated where Self: UIView {
             })
         }
     }
-
+    
     func removeCoordinates() {
         subviews.lazy.forEach {
             if $0.tag == Playground.identifier {
@@ -136,7 +136,7 @@ extension CachedViewable: CustomPlaygroundQuickLookable {
         label.text = path
         label.numberOfLines = 0
         label.sizeToFit()
-
+        
         let view = UIView(frame:
             CGRect(origin: .zero,
                    size: CGSize(width: content.frame.width,
