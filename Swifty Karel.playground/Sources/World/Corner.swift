@@ -7,28 +7,16 @@ public class Corner: UIView, Coordinated {
     var avenue: Int { return point.y }
     public private(set) var blocked: [GeologicalDirection]?
 
-    public var borderColor: UIColor {
-        didSet {
-            setNeedsDisplay()
-        }
-    }
-
-    public var borderWidth: CGFloat {
-        didSet {
-            setNeedsLayout()
-        }
-    }
-
-    public convenience init(street: Int, avenue: Int, frame: CGRect, backgroundColor: UIColor? = .white, blockedInDirections directions: [GeologicalDirection]? = nil) {
+    public convenience init(street: Int, avenue: Int, frame: CGRect, backgroundColor: UIColor = Playground.current.colorScheme.cornerBackgroundColor, blockedInDirections directions: [GeologicalDirection]? = nil) {
         self.init(point:Point(street,avenue), frame: frame, backgroundColor: backgroundColor, blockedInDirections: directions)
     }
 
-    public init(point: Point, frame: CGRect, backgroundColor: UIColor? = .white, blockedInDirections directions: [GeologicalDirection]? = nil) {
+    public init(point: Point, frame: CGRect, backgroundColor: UIColor = Playground.current.colorScheme.cornerBackgroundColor, blockedInDirections directions: [GeologicalDirection]? = nil) {
         self.point = point
-        borderColor = .black
-        borderWidth = 3
         super.init(frame: frame)
         self.backgroundColor = backgroundColor
+        layer.borderColor = UIColor.background.cgColor
+        layer.borderWidth = 1
         blocked = directions
         beeperView.frame = bounds
         beeperView.backgroundColor = .clear
@@ -83,8 +71,8 @@ public class Corner: UIView, Coordinated {
                 path.addLine(to: CGPoint(x: bounds.minX, y: bounds.maxY))
             }
         }
-        path.lineWidth = borderWidth
-        borderColor.setStroke()
+        path.lineWidth = 5
+        Playground.current.colorScheme.wallColor.setStroke()
         path.stroke()
     }
 

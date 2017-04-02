@@ -103,7 +103,8 @@ extension Coordinated where Self: UIView {
     func showCoordinates(autoHide: Bool = false) {
         let label = UILabel()
         label.text = "(\(street), \(avenue))"
-        label.frame = CGRect(origin: .zero, size: CGSize(side: frame.width))
+        label.frame = CGRect(x: 0, y: bounds.maxY - 50, width: bounds.width, height: 50)
+        label.textColor = Playground.current.colorScheme.cornerCoordinatesColor
         label.textAlignment = .center
         label.tag = Playground.identifier
         addSubview(label)

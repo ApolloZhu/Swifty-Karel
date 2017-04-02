@@ -8,7 +8,7 @@ public class Karel: UIView, Coordinated {
     }
 
     private var imageView = UIImageView()
-    var image = UIImage(named: "karel.png") {
+    var image = UIImage(named: "Karel.png") {
         didSet {
             imageView.removeFromSuperview()
             imageView.frame = bounds
@@ -24,6 +24,11 @@ public class Karel: UIView, Coordinated {
         count += 1
         UIView.animate(withDuration: Playground.current.duration, delay: Playground.current.duration * count, options: .curveEaseInOut, animations: { [weak self] in
             if let this = self {
+                Playground.current.liveView.subviews.lazy.forEach {
+                    if $0.tag == Playground.identifier {
+                        $0.removeFromSuperview()
+                    }
+                }
                 animation(this)
             }}
         )
@@ -130,7 +135,7 @@ public class Karel: UIView, Coordinated {
     }
 
     var colorOfBlock: UIColor {
-        return corner.backgroundColor ?? .clear
+        return corner.backgroundColor ?? Playground.current.colorScheme.cornerBackgroundColor
     }
 
     func paintBlock(color: UIColor) {
@@ -173,11 +178,6 @@ extension Karel {
         label.backgroundColor = .background
         label.alpha = 0.9
         animate { _ in
-            liveView.subviews.lazy.forEach {
-                if $0.tag == Playground.identifier {
-                    $0.removeFromSuperview()
-                }
-            }
             liveView.addSubview(cover)
             liveView.addSubview(label)
             cover.frame = liveView.bounds

@@ -22,6 +22,7 @@ public struct KarelModel {
 }
 
 public class WorldModel {
+    static let invalid = WorldModel(streets: 0, avenues: 0)
     public fileprivate(set) var streetsCount: Int
     public fileprivate(set) var avenuesCount: Int
     public fileprivate(set) var karel = KarelModel(point: .origin, facing: .east)
@@ -143,7 +144,7 @@ extension WorldModel: CustomPlaygroundQuickLookable {
     public var customPlaygroundQuickLook: PlaygroundQuickLook {
         let view = WorldView(model: self, in: CGRect(origin: .zero, size: CGSize(side: 400)))
         view.layout()
-        view.karelView.image = UIImage(named: "karel.png")
+        view.karelView.image = UIImage(named: "Karel.png")
         return .view(view)
     }
 }

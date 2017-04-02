@@ -12,7 +12,7 @@ class WorldView: UIView {
     public init() {
         streets = 0
         avenues = 0
-        worldModel = WorldModel(streets: 0, avenues: 0)
+        worldModel = .invalid
         blockSize = 0
         super.init(frame: .zero)
     }
@@ -84,12 +84,15 @@ class WorldView: UIView {
                 }
             }
         }
-        redraw()
+        reload()
     }
 
-    private func redraw() {
+    func reload() {
         corners.lazy.forEach {
             $0.lazy.forEach {
+                if Playground.current.showCoordinates {
+                    $0.showCoordinates()
+                }
                 $0.setNeedsDisplay()
             }
         }
