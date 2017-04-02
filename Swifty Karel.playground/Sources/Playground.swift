@@ -19,13 +19,19 @@ public class Playground {
     public var liveView: UIView {
         return viewController.view
     }
+    public var karelImage = UIImage(named: "karel.png") {
+        didSet {
+            Karel.current.image = karelImage
+        }
+    }
 
-    var worldView: WorldView! = nil
+    var worldView = WorldView()
     private let viewController = UIViewController()
 
     public func show(worldModel: WorldModel) {
         worldView = WorldView(model: worldModel, in: liveView.frame)
         worldView.layout()
+        Karel.current.image = karelImage
         liveView.addSubview(worldView)
     }
 
@@ -44,4 +50,10 @@ public class Playground {
 
     public var speed: SpeedConfig = .double
     var duration: Double { return 1/speed.rawValue }
+}
+
+extension Playground: CustomPlaygroundQuickLookable {
+    public var customPlaygroundQuickLook: PlaygroundQuickLook {
+        return PlaygroundQuickLook.view(liveView)
+    }
 }

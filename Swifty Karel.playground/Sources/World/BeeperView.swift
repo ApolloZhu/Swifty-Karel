@@ -5,8 +5,8 @@ class BeeperView: UIView {
     private(set) lazy var beeperLabel: UILabel = {
         let label = UILabel()
         self.addSubview(label)
-        label.adjustsFontSizeToFitWidth = true
-        label.minimumScaleFactor = 0.2
+        label.frame = self.bounds
+        label.textAlignment = .center
         return label
     }()
     var stroke: UIColor = .tianyi { didSet { setNeedsDisplay(); beeperLabel.textColor = stroke } }

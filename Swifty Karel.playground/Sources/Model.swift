@@ -24,7 +24,7 @@ public struct KarelModel {
 public class WorldModel {
     public fileprivate(set) var streetsCount: Int
     public fileprivate(set) var avenuesCount: Int
-    public fileprivate(set) var karel = KarelModel(point: .zero, facing: .east)
+    public fileprivate(set) var karel = KarelModel(point: .origin, facing: .east)
     public fileprivate(set) var beepers = [BeeperModel]()
     public fileprivate(set) var walls = [WallModel]()
     public fileprivate(set) var colored = [ColorModel]()
@@ -42,7 +42,7 @@ extension WorldModel {
         return wall.x >= 0 && wall.y >= 0 && wall.x <= streetsCount && wall.y <= avenuesCount
     }
     private func onEdge(wall: Point) -> Bool {
-        return (wall.x == 0 || wall.x == streetsCount) && (wall.y == 0 || wall.y == avenuesCount)
+        return wall.x == 0 || wall.y == 0 || wall.x == streetsCount || wall.y == avenuesCount
     }
     @discardableResult
     public func makeKarel(at corner: Point, facing geologicalDirection: GeologicalDirection) -> WorldModel {
@@ -136,6 +136,15 @@ extension WorldModel {
             }
         }
         return world
+    }
+}
+
+extension WorldModel: CustomPlaygroundQuickLookable {
+    public var customPlaygroundQuickLook: PlaygroundQuickLook {
+        let view = WorldView(model: self, in: CGRect(origin: .zero, size: CGSize(side: 400)))
+        view.layout()
+        view.karelView.image = Playground.current.karelImage
+        return .view(view)
     }
 }
 

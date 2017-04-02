@@ -42,6 +42,7 @@ public enum Direction: Int {
 
 public struct Point: CustomStringConvertible {
     public static let zero = Point(0,0)
+    public static let origin = Point(1,1)
     public internal(set) var x, y: Int
 
     public init(_ x: Int = 0, _ y: Int = 0) {
@@ -68,6 +69,16 @@ public struct Point: CustomStringConvertible {
 enum KarelError: Error {
     case beenBlocked(at: Point, facing: GeologicalDirection)
     case noBeeper
+    var localizedDescription: String {
+        switch self {
+        case .noBeeper:
+            return "Karel is trying to pick up nothing"
+        case .beenBlocked(let point, facing):
+            return "Karel is blocked at (\(point.x), \(point.y)), facing \(facing)"
+        default:
+            return "Karel is %^$#$*#^$&"
+        }
+    }
 }
 
 extension Error {
@@ -76,12 +87,29 @@ extension Error {
     }
 }
 
-extension CGRect {
-
-}
-
 extension Bool {
     static func ^(lhs: Bool, rhs: Bool) -> Bool {
         return lhs != rhs
     }
 }
+
+protocol Coordinated {
+    var street: Int { get }
+    var avenue: Int { get }
+}
+
+extension Coordinated where Self: UIView {
+    func showCoordinate(autoHide: Bool = false) {
+        let label = UILabel()
+        label.text = "(\(street), \(avenue))"
+        label.frame = CGRect(origin: .zero, size: CGSize(side: frame.width))
+        label.textAlignment = .center
+        addSubview(label)
+        if autoHide {
+            UIView.animate(withDuration: Playground.current.duration, delay: Playground.current.duration * 3, animations: {
+                label.removeFromSuperview()
+            })
+        }
+    }
+}
+

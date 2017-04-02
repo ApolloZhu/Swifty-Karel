@@ -1,68 +1,73 @@
 import UIKit
 
-public class Karel: UIImageView {
+public class Karel: UIView, Coordinated {
+
     // MARK: Setup
     class var current: Karel {
         return Playground.current.worldView.karelView
     }
 
-    override public init(frame: CGRect) {
-        super.init(frame: frame)
-        setup()
-    }
-
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setup()
-    }
-
-    override public init(image: UIImage?) {
-        super.init(image: image)
-        setup()
-    }
-
-    override public init(image: UIImage?, highlightedImage: UIImage?) {
-        super.init(image: image, highlightedImage: highlightedImage)
-        setup()
-    }
-
-    private func setup() {
-        image = UIImage(named: "karel")
-        contentMode = .scaleAspectFit
-        backgroundColor = .tianyi
+    private var imageView = UIImageView()
+    var image = UIImage(named: "karel.png") {
+        didSet {
+            imageView.removeFromSuperview()
+            imageView.frame = bounds
+            imageView.image = image
+            imageView.contentMode = .scaleAspectFit
+            addSubview(imageView)
+            showCoordinate()
+        }
     }
 
     // MARK: Animation
     private var count = 0.0
     private func animate(by animation: @escaping (Karel) -> Void) {
         count += 1
-        UIView.animate(withDuration: Playground.current.duration, delay: Playground.current.duration * count, options: .curveEaseInOut, animations:
-            { [weak self] in
-                if let this = self {
-                    animation(this)
+        UIView.animate(withDuration: Playground.current.duration, delay: Playground.current.duration * count, options: .curveEaseInOut, animations: { [weak self] in
+            if let this = self {
+                this.subviews.forEach {
+                    if $0 is UILabel {
+                        $0.removeFromSuperview()
+                    }
                 }
-            }, completion: { [weak self] _ in if let this = self { this.count -= 1 }})
+                animation(this)
+                this.showCoordinate()
+            }}
+        )
     }
 
     // MARK: World
     var position = Point.zero
-    private var cornor: Corner {
-        return Playground.current.worldView.corners[position.x][position.y]
+    var street: Int {
+        get { return position.x }
+        set { position.x = newValue }
     }
-    var facing = GeologicalDirection.east
+    var avenue: Int {
+        get { return position.y }
+        set { position.y = newValue }
+    }
+
+    private var corner: Corner {
+        return Playground.current.worldView.corners[street-1][avenue-1]
+    }
+    private(set) var facing = GeologicalDirection.east
+    func setFacing(_ newValue: GeologicalDirection) {
+        while facing != newValue {
+            turnLeft()
+        }
+    }
 
     // Mark: Features
     var isBlocked: Bool {
-        return cornor.blocked?.contains(facing) ?? false
+        return corner.blocked?.contains(facing) ?? false
     }
 
     func isClear(at direction: Direction) -> Bool {
-        return cornor.blocked?.contains(facing.geologicalDirection(whenFacing: direction)) != true
+        return corner.blocked?.contains(facing.geologicalDirection(whenFacing: direction)) != true
     }
 
     func move() {
         animate { this in
-            //FIXME: Implement world first
             guard !this.isBlocked else {
                 // This also include situation which karel is at the edge
                 fatalError(KarelError.beenBlocked(at: this.position, facing: this.facing).localizedDescription)
@@ -70,16 +75,20 @@ public class Karel: UIImageView {
             switch this.facing {
             case .west:
                 this.frame.origin.x -= this.frame.width
-                this.position.x -= 1
+                this.avenue -= 1
+
             case .east:
                 this.frame.origin.x += this.frame.width
-                this.position.x += 1
+                this.avenue += 1
+
             case .north:
                 this.frame.origin.y -= this.frame.height
-                this.position.y += 1
+                this.street += 1
+
             case .south:
                 this.frame.origin.y += this.frame.height
-                this.position.y -= 1
+                this.street -= 1
+
             }
         }
     }
@@ -101,22 +110,22 @@ public class Karel: UIImageView {
     }
 
     func turnAround() {
+        facing.turnLeft()
+        facing.turnLeft()
         animate { this in
             let transform = this.layer.affineTransform().rotated(by: .pi)
             this.layer.setAffineTransform(transform)
-            this.facing.turnLeft()
-            this.facing.turnLeft()
         }
     }
 
     var isOnBeeper: Bool {
-        return cornor.beeperCount > 0
+        return corner.beeperCount > 0
     }
 
     func pickBepper(count: Int = 1) {
         for _ in 0..<count {
             do {
-                try cornor.pickBeeper()
+                try corner.pickBeeper()
             } catch {
                 error.show()
             }
@@ -125,16 +134,18 @@ public class Karel: UIImageView {
 
     func putBeeper(count: Int = 1) {
         for _ in 0..<count {
-            cornor.putBeeper()
+            corner.putBeeper()
         }
     }
 
     var colorOfBlock: UIColor {
-        return cornor.backgroundColor ?? .clear
+        return corner.backgroundColor ?? .clear
     }
 
     func paintBlock(color: UIColor) {
-        cornor.backgroundColor = color
+        animate { this in
+            this.corner.backgroundColor = color
+        }
     }
 }
 
@@ -146,7 +157,7 @@ extension Karel {
     func isFacing(_ direction: GeologicalDirection) -> Bool {
         return facing == direction
     }
-
+    
     func isNotFacing(_ direction: GeologicalDirection) -> Bool {
         return !isFacing(direction)
     }

@@ -1,29 +1,18 @@
-//
-//  Corner.swift
-//  SwiftyKarel
-//
-//  Created by Apollonian on 10/10/16.
-//
-//
-
-import Foundation
 import UIKit
 
-public class Corner: UIView {
+public class Corner: UIView, Coordinated {
     private var beeperView = BeeperView()
     var street, avenue: Int
     public private(set) var blocked: [GeologicalDirection]?
 
-    public var borderColor: UIColor = .tianyi {
+    public var borderColor: UIColor {
         didSet {
-            layer.borderColor = borderColor.cgColor
             setNeedsDisplay()
         }
     }
 
-    public var borderWidth: CGFloat = 1 {
+    public var borderWidth: CGFloat {
         didSet {
-            layer.borderWidth = borderWidth
             setNeedsLayout()
         }
     }
@@ -31,20 +20,19 @@ public class Corner: UIView {
     public init(street: Int, avenue: Int, frame: CGRect, backgroundColor: UIColor? = .white, blockedInDirections directions: [GeologicalDirection]? = nil) {
         self.street = street
         self.avenue = avenue
+        borderColor = .black
+        borderWidth = 3
         super.init(frame: frame)
         self.backgroundColor = backgroundColor
         blocked = directions
-        layer.borderColor = borderColor.cgColor
     }
 
     convenience public init(_ point: Point, frame: CGRect, backgroundColor: UIColor? = .white, blockedInDirections directions: [GeologicalDirection]? = nil) {
         self.init(street:point.x,avenue:point.y, frame: frame, backgroundColor: backgroundColor, blockedInDirections: directions)
     }
-
+    
     required public init?(coder aDecoder: NSCoder) {
-        street = 0
-        avenue = 0
-        super.init(coder: aDecoder)
+        fatalError("init(coder:) has not been implemented")
     }
 
     public var beeperCount: Int {
@@ -78,30 +66,25 @@ public class Corner: UIView {
         for direction in blocked {
             switch direction {
             case .north:
-                path.move(to: frame.origin)
-                path.addLine(to: CGPoint(x: frame.maxX, y: frame.minY))
+                path.move(to: bounds.origin)
+                path.addLine(to: CGPoint(x: bounds.maxX, y: bounds.minY))
             case .east:
-                path.move(to: CGPoint(x: frame.maxX, y: frame.minY))
-                path.addLine(to: CGPoint(x: frame.maxX, y: frame.maxY))
+                path.move(to: CGPoint(x: bounds.maxX, y: bounds.minY))
+                path.addLine(to: CGPoint(x: bounds.maxX, y: bounds.maxY))
             case .south:
-                path.move(to: CGPoint(x: frame.minX, y: frame.maxY))
-                path.addLine(to: CGPoint(x: frame.maxX, y: frame.maxY))
+                path.move(to: CGPoint(x: bounds.minX, y: bounds.maxY))
+                path.addLine(to: CGPoint(x: bounds.maxX, y: bounds.maxY))
             case .west:
-                path.move(to: frame.origin)
-                path.addLine(to: CGPoint(x: frame.minX, y: frame.maxY))
+                path.move(to: bounds.origin)
+                path.addLine(to: CGPoint(x: bounds.minX, y: bounds.maxY))
             }
         }
-        path.lineWidth = borderWidth * 3
+        path.lineWidth = borderWidth
         borderColor.setStroke()
         path.stroke()
     }
 
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let label = UILabel()
-        label.text = "(\(street), \(avenue))"
-        addSubview(label)
-        UIView.animate(withDuration: Playground.current.duration, delay: Playground.current.duration * 3, animations: {
-            label.removeFromSuperview()
-        })
+        showCoordinate(autoHide: true)
     }
 }
