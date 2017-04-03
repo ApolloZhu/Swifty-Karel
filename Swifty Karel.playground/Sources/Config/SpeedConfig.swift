@@ -15,6 +15,7 @@ public enum SpeedConfig: RawRepresentable {
         default: self = .custom(scale: rawValue)
         }
     }
+
     public var rawValue: Double {
         switch self {
         case .half: return 0.5

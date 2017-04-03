@@ -25,7 +25,7 @@ public class WorldModel {
     static let invalid = WorldModel(streets: 0, avenues: 0)
     public fileprivate(set) var streetsCount: Int
     public fileprivate(set) var avenuesCount: Int
-    public fileprivate(set) var karel = KarelModel(point: .origin, facing: .east)
+    public fileprivate(set) var karelModel = KarelModel(point: .origin, facing: .east)
     public fileprivate(set) var beepers = [BeeperModel]()
     public fileprivate(set) var walls = [WallModel]()
     public fileprivate(set) var colored = [ColorModel]()
@@ -55,7 +55,7 @@ extension WorldModel {
     @discardableResult
     public func makeKarel(at corner: Point, facing geologicalDirection: GeologicalDirection) -> WorldModel {
         if isValid(corner: corner) {
-            karel = KarelModel(point: corner, facing: geologicalDirection)
+            karelModel = KarelModel(point: corner, facing: geologicalDirection)
         }
         return self
     }
@@ -94,7 +94,7 @@ extension WorldModel {
      ...
      */
     public var ascii: String {
-        var out = "\(streetsCount) \(avenuesCount) \(karel.point.debugDescription) \(karel.facing.rawValue)\n"
+        var out = "\(streetsCount) \(avenuesCount) \(karelModel.point.debugDescription) \(karelModel.facing.rawValue)\n"
         for beeper in beepers {
             out += "\(beeper.corner.debugDescription) \(beeper.count)\n"
         }
@@ -115,10 +115,10 @@ extension WorldModel {
         do {
             let url = name.karelWorldURL
             try ascii.write(to: url, atomically: true, encoding: .utf8)
-            Karel.current.alert("Saved to \(url.absoluteURL)")
-            return CachedViewable(content: view, path: url.path)
+            karel.alert("Saved to \(url.absoluteURL)")
+            return CachedViewable(content: quickLookView, path: url.path)
         } catch {
-            return CachedViewable(content: view, path: error.localizedDescription)
+            return CachedViewable(content: quickLookView, path: error.localizedDescription)
         }
     }
     public class func named(_ name: String) -> WorldModel? {
@@ -146,18 +146,6 @@ extension WorldModel {
             }
         }
         return world
-    }
-}
-
-extension WorldModel: CustomPlaygroundQuickLookable {
-    fileprivate var view: UIView {
-        let view = WorldView(model: self, in: CGRect(origin: .zero, size: CGSize(side: 400)))
-        view.layout()
-        view.karelView.image = UIImage(named: "Karel.png")
-        return view
-    }
-    public var customPlaygroundQuickLook: PlaygroundQuickLook {
-        return .view(view)
     }
 }
 

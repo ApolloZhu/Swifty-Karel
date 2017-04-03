@@ -2,7 +2,9 @@ import Foundation
 import UIKit
 
 /// Karel the robot.
-var karel: Karel { return Karel.current }
+var karel: Karel {
+    return Playground.current.worldView.karelView
+}
 
 /// Move Karel forward 1 block in current direction.
 public func move() {

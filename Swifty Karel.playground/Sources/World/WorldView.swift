@@ -4,7 +4,7 @@ class WorldView: UIView {
     static var current: WorldView {
         return Playground.current.worldView
     }
-    public var karelView = Karel()
+    public var karelView: Karel
     public let streets, avenues: Int
     public let worldModel: WorldModel
     private let blockSize: CGFloat
@@ -14,18 +14,22 @@ class WorldView: UIView {
         avenues = 0
         worldModel = .invalid
         blockSize = 0
+        karelView = Karel()
         super.init(frame: .zero)
+        karelView.worldView = self
     }
-    
+
     public init(model: WorldModel, in rect: CGRect) {
+        karelView = Karel()
         worldModel = model
         streets = model.streetsCount
         avenues = model.avenuesCount
         let (frame, cornerSize) = rect.max(ratio: Point(avenues,streets))
         blockSize = cornerSize
         super.init(frame: frame)
-        karelView.position = worldModel.karel.point
-        karelView.setFacing(worldModel.karel.facing)
+        karelView.worldView = self
+        karelView.position = worldModel.karelModel.point
+        karelView.setFacing(worldModel.karelModel.facing)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -39,9 +43,6 @@ class WorldView: UIView {
     var corners = [[Corner]]()
     
     func layout() {
-        karelView.frame = CGRect(origin: realCorner(from: karel.position).cgPoint(scaledBy: blockSize),
-                                 size: CGSize(side: blockSize))
-        
         corners = (1...streets).lazy.map { street in
             (1...avenues).lazy.map { avenue in
                 let c = Corner(street: street, avenue: avenue,
@@ -51,6 +52,12 @@ class WorldView: UIView {
                 return c
             }
         }
+
+        karelView.frame = CGRect(origin: realCorner(from: karel.position).cgPoint(scaledBy: blockSize),
+                                 size: CGSize(side: blockSize))
+        addSubview(karelView)
+        karelView.image = Playground.current.karelImage
+
         for beeper in worldModel.beepers.lazy {
             for _ in 0..<beeper.count {
                 corners[beeper.corner.x-1][beeper.corner.y-1].putBeeper()
@@ -60,7 +67,6 @@ class WorldView: UIView {
             corners[colored.corner.x-1][colored.corner.y-1].backgroundColor = colored.color
         }
         setWalls()
-        addSubview(karelView)
     }
     
     func setWalls() {
