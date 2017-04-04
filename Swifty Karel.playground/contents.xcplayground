@@ -8,6 +8,7 @@
         <page name='Put Beeper'/>
         <page name='Pick Beeper'/>
         <page name='Customize'/>
+        <page name='Theme'/>
         <page name='Save Work!'/>
     </pages>
 </playground>

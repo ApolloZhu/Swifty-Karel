@@ -3,12 +3,6 @@
  ![](Karel.png)
  */
 
-//#-hidden-code
-//Playground.current.colorScheme = .default
-//Playground.current.showCoordinates = true
-//Playground.current.karelImage = #imageLiteral(resourceName: "Origin.png")
-//Playground.current.speed = .custom(scale: 3)
-
 let model = WorldModel(streets: 3, avenues: 3).makeKarel(at: .origin, facing: .north).addWall(from: Point(0,2), to: Point(1,2))
 Playground.current.show(worldModel: model)
 //#-end-hidden-code
@@ -36,7 +30,4 @@ for i in 0..<2 {
 }
 paintCorner(color: .green)
 
-//Playground.current.colorScheme = .dusk
-//Playground.current.saveAsWorldModel(withName: "World")
-//Playground.current.show(worldModel: WorldModel.named("World")!)
 //#-end-editable-code

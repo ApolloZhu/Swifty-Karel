@@ -7,7 +7,7 @@ class BeeperView: UIView {
         self.addSubview(label)
         label.frame = self.bounds
         label.textAlignment = .center
-        label.textColor = Playground.current.colorScheme.bepperCountColor
+        label.textColor = Playground.current.colorScheme.beeperCountColor
         return label
     }()
     
