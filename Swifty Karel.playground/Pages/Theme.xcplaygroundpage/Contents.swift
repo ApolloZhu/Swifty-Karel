@@ -22,6 +22,5 @@ let myTheme = ColorScheme(
  - Experiment: Now, let's try out our new theme!
  */
 Playground.current.colorScheme = myTheme
-//: Let Karel explore! 
 runKarel()
 //: [Next](@next)

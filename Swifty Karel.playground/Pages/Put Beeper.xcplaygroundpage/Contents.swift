@@ -1,7 +1,11 @@
 /*:
 [Previous](@previous) | [Next](@next)
  ****
- - Important: The `putBeeper()` method let Karel put a beeper at current location. Karel has so many beepers, that he can always find one to put down!
+ # Put Beepers
+ Karel always carries a lot of beepers. 
+ No one knows why, but magically, Karel can always find a beeper to put down!
+
+ - Important: The `putBeeper()` method let Karel put a beeper at current location. 
  */
 WorldModel(streets: 1, avenues: 1).setBeeperCount(for: .origin, to: 1)
 Playground.current.show(worldModel: WorldModel(streets: 1, avenues: 1))
