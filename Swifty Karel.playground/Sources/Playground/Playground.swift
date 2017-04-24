@@ -96,7 +96,6 @@ public class Playground {
                 if $0.beeperCount > 0 {
                     model.setBeeperCount(for: $0.point, to: $0.beeperCount)
                 }
-
             }
         }
         return model
@@ -140,4 +139,7 @@ public class Playground {
             backgroundMusicPlayer?.volume = newValue
         }
     }
+
+    /// If Karel completes its task dynamicly or not
+    public var isAnimationEnabled: Bool = true
 }

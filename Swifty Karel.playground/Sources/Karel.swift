@@ -17,6 +17,7 @@ public class Karel: UIView, Coordinated {
     // MARK: Animation
     private var count = 0.0
     fileprivate func animate(animatable: Bool = true, by animation: @escaping (Karel) -> Void) {
+        guard Playground.current.isAnimationEnabled else { return animation(self) }
         count += 1
         if animatable {
             UIView.animate(withDuration: Playground.current.duration, delay: Playground.current.duration * count, options: .curveEaseInOut, animations: { [weak self] in
@@ -200,18 +201,18 @@ extension Karel {
             liveView.addSubview(label)
             cover.frame = liveView.bounds
             label.frame = liveView.bounds.max(ratio: Point(16,9), insect: UIEdgeInsets(side: 20)).frame
-            Timer.scheduledTimer(withTimeInterval: Playground.current.duration * 5, repeats: false, block: {
+            Timer.scheduledTimer(withTimeInterval: Playground.current.duration * 5, repeats: false) {
                 $0.invalidate()
                 cover.removeFromSuperview()
                 label.removeFromSuperview()
-            })
+            }
         }
     }
 }
 
 extension Error {
     func show() {
-        karel.alert(self.localizedDescription)
+        karel.alert(localizedDescription)
     }
 }
 

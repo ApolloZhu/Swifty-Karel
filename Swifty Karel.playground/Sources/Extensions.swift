@@ -2,8 +2,8 @@ import Foundation
 import UIKit
 
 extension UIColor {
-    public static let tianyi = UIColor(red: 0.4, green: 0.8, blue: 1, alpha: 1)
-    public static let background = UIColor(red: 0.97, green: 0.97, blue: 0.97, alpha: 1.00)
+    public static let tianyi = #colorLiteral(red: 0.4, green: 0.8, blue: 1, alpha: 1)
+    public static let background = #colorLiteral(red: 0.97, green: 0.97, blue: 0.97, alpha: 1.00)
 }
 
 extension CGSize {
@@ -36,6 +36,7 @@ extension Bool {
         return lhs != rhs
     }
 }
+
 extension UIView {
     public func snapshot() -> UIImage? {
         defer { UIGraphicsEndImageContext() }

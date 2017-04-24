@@ -12,7 +12,7 @@ public enum SpeedConfig: RawRepresentable {
         case 1: self = .normal
         case 2: self = .double
         case 4: self = .quadruple
-        default: self = .custom(scale: rawValue)
+        default: self = .custom(scale: abs(rawValue))
         }
     }
 

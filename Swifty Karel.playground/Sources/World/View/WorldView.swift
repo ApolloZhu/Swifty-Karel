@@ -4,9 +4,9 @@ class WorldView: UIView {
     static var current: WorldView {
         return Playground.current.worldView
     }
-    public var karelView: Karel
-    public let streets, avenues: Int
-    public let worldModel: WorldModel
+    var karelView: Karel
+    let streets, avenues: Int
+    let worldModel: WorldModel
     private let blockSize: CGFloat
     
     public init() {
@@ -19,6 +19,7 @@ class WorldView: UIView {
         karelView.worldView = self
     }
 
+    /// Must call `layout` by the client for some reason I don't know
     public init(model: WorldModel, in rect: CGRect) {
         karelView = Karel()
         worldModel = model
@@ -43,6 +44,7 @@ class WorldView: UIView {
     var corners = [[Corner]]()
     
     func layout() {
+        guard worldModel !== WorldModel.invalid else { return }
         corners = (1...streets).lazy.map { street in
             (1...avenues).lazy.map { avenue in
                 let c = Corner(street: street, avenue: avenue,
@@ -69,7 +71,7 @@ class WorldView: UIView {
         setWalls()
     }
     
-    func setWalls() {
+    private func setWalls() {
         corners[0].forEach { $0.block(directions: .south) }
         corners[streets-1].forEach { $0.block(directions: .north) }
         (0..<streets).forEach {

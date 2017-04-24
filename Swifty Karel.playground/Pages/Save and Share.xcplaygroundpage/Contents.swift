@@ -2,11 +2,14 @@
  [Previous](@previous) | [Next](@next)
  ****
  # Save and Share
- I'm sure you are having fun with Karel, so you definitely want to sae your progress. You have a several choices.
+ I'm sure you are having fun with Karel, so you definitely want to save your progress. 
  */
+
+Playground.current.isAnimationEnabled = false
 helloWWDC17()
+
 //: ## Save as an Image
-//: You may notice there is a long, weird link below the image. That is where the image is!
+//: You may notice there is a long, weird link below the image. That is where the image located in your computer!
 
 Playground.current.saveAsImage(withName: "Karel's Selfie")
 
@@ -15,15 +18,15 @@ Playground.current.saveAsImage(withName: "Karel's Selfie")
 
 Playground.current.saveAsWorldModel(withName: "My Awesome World")
 
-//: You can load your saved world like this
+//: You can load your saved world like this. Now we can refer to it as the `model`.
 
 let model = WorldModel.named("My Awesome World")!
 
-//: If you are curious, here is what the file contains
+//: If you are curious, these are the data representing the world we just saved.
 
 model.ascii
 
-//: Then let's load the world back
+//: And finally, let's display the model. It should be exactly the same as the world before.
 
 Playground.current.show(worldModel: model)
 
