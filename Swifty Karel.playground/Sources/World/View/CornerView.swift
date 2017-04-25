@@ -1,17 +1,17 @@
 import UIKit
 
-public class Corner: UIView, Coordinated {
+public class CornerView: UIView, Coordinated {
     private var beeperView = BeeperView()
     var point: Point
     var street: Int { return point.x }
     var avenue: Int { return point.y }
-    public private(set) var blocked: [GeologicalDirection]?
+    public private(set) var blocked: [CompassDirection]?
     
-    public convenience init(street: Int, avenue: Int, frame: CGRect, backgroundColor: UIColor = Playground.current.colorScheme.cornerBackgroundColor, blockedInDirections directions: [GeologicalDirection]? = nil) {
+    public convenience init(street: Int, avenue: Int, frame: CGRect, backgroundColor: UIColor = Playground.current.colorScheme.cornerBackgroundColor, blockedInDirections directions: [CompassDirection]? = nil) {
         self.init(point:Point(street,avenue), frame: frame, backgroundColor: backgroundColor, blockedInDirections: directions)
     }
     
-    public init(point: Point, frame: CGRect, backgroundColor: UIColor = Playground.current.colorScheme.cornerBackgroundColor, blockedInDirections directions: [GeologicalDirection]? = nil) {
+    public init(point: Point, frame: CGRect, backgroundColor: UIColor = Playground.current.colorScheme.cornerBackgroundColor, blockedInDirections directions: [CompassDirection]? = nil) {
         self.point = point
         super.init(frame: frame)
         self.backgroundColor = backgroundColor
@@ -42,7 +42,7 @@ public class Corner: UIView, Coordinated {
         beeperView.beeperCount += 1
     }
     
-    public func block(directions: GeologicalDirection...) {
+    public func block(directions: CompassDirection...) {
         if blocked != nil {
             blocked!.append(contentsOf: directions)
         } else {

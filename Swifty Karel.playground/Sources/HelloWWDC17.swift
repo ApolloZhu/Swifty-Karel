@@ -25,7 +25,14 @@ public func helloWWDC17() {
     Playground.current.speed = config
 }
 
-var curFillColor = #colorLiteral(red: 0.24, green: 0.24, blue: 0.24, alpha: 1)
+var curFillColor: UIColor = {
+    let color = Playground.current.colorScheme.cornerBackgroundColor
+    var white = CGFloat()
+    if color.getWhite(&white, alpha: nil) && white < 0.55 {
+        return .background
+    }
+    return #colorLiteral(red: 0.24, green: 0.24, blue: 0.24, alpha: 1)
+}()
 
 func paint(_ count: Int = 1) {
     for _ in 0..<count {

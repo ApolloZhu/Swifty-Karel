@@ -26,55 +26,55 @@ public func putBeeper() {
     karel.putBeeper()
 }
 
-/// The position karel is at in the world.
+/// The position Karel is at in the world.
 public var position: Point {
     return karel.position
 }
 
-/// The geological direction karel is currently facing, either north, east, south, or west.
-public var facing: GeologicalDirection {
+/// The compass direction Karel is currently facing, either north, east, south, or west.
+public var facing: CompassDirection {
     return karel.facing
 }
 
-/// If karel is on beeper.
+/// If Karel is on beeper.
 public var isOnBeeper: Bool {
     return karel.isOnBeeper
 }
 
-/// If karel is blocked by a wall in front.
+/// If Karel is blocked by a wall in front.
 public var isBlocked: Bool {
     return karel.isBlocked
 }
 
-/// Check if karel can move to the given direction
+/// Check if Karel can move to the given direction
 ///
-/// - Parameter direction: a direction relative to karel to check, either front, right, back, or left.
-/// - Returns: if karel is not blocked at `direction`.
+/// - Parameter direction: a direction relative to Karel to check, either front, right, back, or left.
+/// - Returns: if Karel is not blocked at `direction`.
 public func isClear(at direction: Direction) -> Bool {
     return karel.isClear(at: direction)
 }
 
-/// Check if karel can't move to the given direction
+/// Check if Karel can't move to the given direction
 ///
-/// - Parameter direction: a direction relative to karel to check, either front, right, back, or left.
-/// - Returns: if karel is blocked at `direction`.
+/// - Parameter direction: a direction relative to Karel to check, either front, right, back, or left.
+/// - Returns: if Karel is blocked at `direction`.
 public func isBlocked(at direction: Direction) -> Bool {
     return karel.isBlocked(at: direction)
 }
 
-/// Check if karel is facing the given geological direction
+/// Check if Karel is facing the given compass direction
 ///
-/// - Parameter direction: a geological location to check, either north, east, south, or west.
-/// - Returns: if karel is facing `direction`
-public func isFacing(_ direction: GeologicalDirection) -> Bool{
+/// - Parameter direction: a compass location to check, either north, east, south, or west.
+/// - Returns: if Karel is facing `direction`
+public func isFacing(_ direction: CompassDirection) -> Bool{
     return karel.isFacing(direction)
 }
 
-/// Check if karel is not facing the given geological direction
+/// Check if Karel is not facing the given compass direction
 ///
-/// - Parameter direction: a geological location to check, either north, east, south, or west.
-/// - Returns: if karel is not facing `direction`
-public func isNotFacing(_ direction: GeologicalDirection) -> Bool{
+/// - Parameter direction: a compass location to check, either north, east, south, or west.
+/// - Returns: if Karel is not facing `direction`
+public func isNotFacing(_ direction: CompassDirection) -> Bool{
     return karel.isNotFacing(direction)
 }
 
@@ -88,16 +88,24 @@ public func turnAround() {
     karel.turnAround()
 }
 
-/// Paint the corner that karel is on to the given color
+/// Paint the corner that Karel is on to the given color
 ///
 /// - Parameter color: color to paint the block to
 public func paintCorner(color: UIColor) {
     karel.paintBlock(color: color)
 }
 
-/// The color of the corner that karel is on
+/// The color of the corner that Karel is on
 public var colorOfCorner: UIColor {
     return karel.colorOfBlock
+}
+
+/// Check if the color of the corner Karel is on is the given color
+///
+/// - Parameter color: the color to match with
+/// - Returns: if `color` is the same as the color of the current corner Karel is on
+public func isColorOfCorner(_ color: UIColor) -> Bool {
+    return colorOfCorner == color
 }
 
 /// Generates a random number in the given range
@@ -122,4 +130,9 @@ public func randomInt(between start: Int, and end: Int) -> Int {
     let MAX = max(start, end)
     let MIN = min(start, end)
     return randomInt(startingFrom: MIN, toBefore: MAX+1)
+}
+
+/// A random boolean value
+var isRandomlyTrue: Bool {
+    return randomInt(between: 0, and: 1) == 0
 }

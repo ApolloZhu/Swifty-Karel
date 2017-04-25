@@ -57,11 +57,11 @@ public class Karel: UIView, Coordinated {
         set { position.y = newValue }
     }
 
-    private var corner: Corner {
+    private var corner: CornerView {
         return (worldView ?? WorldView.current).corners[street-1][avenue-1]
     }
-    private(set) var facing = GeologicalDirection.east
-    func setFacing(_ newValue: GeologicalDirection) {
+    private(set) var facing = CompassDirection.east
+    func setFacing(_ newValue: CompassDirection) {
         while facing != newValue {
             turnLeft()
         }
@@ -73,7 +73,7 @@ public class Karel: UIView, Coordinated {
     }
 
     func isClear(at direction: Direction) -> Bool {
-        return corner.blocked?.contains(facing.geologicalDirection(whenFacing: direction)) != true
+        return corner.blocked?.contains(facing.compassDirection(whenFacing: direction)) != true
     }
 
     func move() {
@@ -169,11 +169,11 @@ extension Karel {
         return !isClear(at: direction)
     }
 
-    func isFacing(_ direction: GeologicalDirection) -> Bool {
+    func isFacing(_ direction: CompassDirection) -> Bool {
         return facing == direction
     }
 
-    func isNotFacing(_ direction: GeologicalDirection) -> Bool {
+    func isNotFacing(_ direction: CompassDirection) -> Bool {
         return !isFacing(direction)
     }
 }
@@ -217,7 +217,7 @@ extension Error {
 }
 
 enum KarelError: Error, LocalizedError {
-    case beenBlocked(at: Point, facing: GeologicalDirection)
+    case beenBlocked(at: Point, facing: CompassDirection)
     case noBeeper(at: Point)
     var errorDescription: String? {
         switch self {

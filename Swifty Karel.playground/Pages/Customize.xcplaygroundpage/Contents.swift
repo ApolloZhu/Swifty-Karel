@@ -15,20 +15,21 @@ Playground.current.showCoordinates = true
  */
 Playground.current.karelImage = #imageLiteral(resourceName: "Origin.png")
 /*:
- You can control the speed of karel.
- By default, it is `.normal`.
- The other built in settings include `.half`, `.double`, and `.quadruple`. 
+ You can control the speed of karel. Built-in settings include
+ 
+ - `.normal`, the default option
+ - `.half`
+ - `.double`
+ - `.quadruple`
+
  If they can't fit your needs, you can always decide it yourself.
+
  - Experiment:  Make Karel run 3 times as fast as normal
  */
 Playground.current.speed = .custom(scale: 3)
-/*
- If you don't like the background music that is going on, you can turn it off!
- */
+//: If you don't like the background music that is going on, you can turn it off!
 Playground.current.isBackgroundMusicEnabled = false
-/*
- Alternatively, you may lower the volume of the music.
- */
+//: Alternatively, you may lower the volume of the music.
 Playground.current.isBackgroundMusicEnabled = true
 Playground.current.backgroundMusicVolume = 0.3
 //: Let's see what have changed!

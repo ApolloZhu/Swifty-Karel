@@ -18,7 +18,7 @@ public struct ColorModel {
 
 public struct KarelModel {
     public let point: Point
-    public let facing: GeologicalDirection
+    public let facing: CompassDirection
 }
 
 public class WorldModel {
@@ -53,9 +53,9 @@ extension WorldModel {
         return wall.x == 0 || wall.y == 0 || wall.x == streetsCount || wall.y == avenuesCount
     }
     @discardableResult
-    public func makeKarel(at corner: Point, facing geologicalDirection: GeologicalDirection) -> WorldModel {
+    public func makeKarel(at corner: Point, facing compassDirection: CompassDirection) -> WorldModel {
         if isValid(corner: corner) {
-            karelModel = KarelModel(point: corner, facing: geologicalDirection)
+            karelModel = KarelModel(point: corner, facing: compassDirection)
         }
         return self
     }
@@ -129,7 +129,7 @@ extension WorldModel {
         let lines = source.components(separatedBy: .newlines)
         
         guard let info = lines.first?.components(separatedBy: " ").flatMap({ Int($0) }),
-            info.count == 5, let direction = GeologicalDirection(rawValue: info[4]) else { return nil }
+            info.count == 5, let direction = CompassDirection(rawValue: info[4]) else { return nil }
         
         let world = WorldModel(streets: info[0], avenues: info[1]).makeKarel(at: Point(info[2],info[3]), facing: direction)
         

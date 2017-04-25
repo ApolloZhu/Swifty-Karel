@@ -1,6 +1,6 @@
 import UIKit
 
-public enum GeologicalDirection: Int {
+public enum CompassDirection: Int {
     case north, east, south, west
     mutating func turnLeft() {
         switch self {
@@ -18,9 +18,9 @@ public enum GeologicalDirection: Int {
         case .west: self = .north
         }
     }
-    func geologicalDirection(whenFacing direction: Direction) -> GeologicalDirection {
+    func compassDirection(whenFacing direction: Direction) -> CompassDirection {
         // We are always facing front
-        return GeologicalDirection(rawValue: (rawValue + direction.rawValue) % 4)!
+        return CompassDirection(rawValue: (rawValue + direction.rawValue) % 4)!
     }
 }
 
@@ -56,6 +56,8 @@ public struct Point: CustomStringConvertible, CustomDebugStringConvertible {
         return CGPoint(x: scale*CGFloat(x), y: scale*CGFloat(y))
     }
 }
+
+public typealias Corner = Point
 
 protocol Coordinated {
     var street: Int { get }

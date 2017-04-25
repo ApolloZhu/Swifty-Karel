@@ -41,13 +41,13 @@ class WorldView: UIView {
         return Point(point.y - 1, streets - point.x)
     }
     
-    var corners = [[Corner]]()
+    var corners = [[CornerView]]()
     
     func layout() {
         guard worldModel !== WorldModel.invalid else { return }
         corners = (1...streets).lazy.map { street in
             (1...avenues).lazy.map { avenue in
-                let c = Corner(street: street, avenue: avenue,
+                let c = CornerView(street: street, avenue: avenue,
                                frame: CGRect(origin: realCorner(from: Point(street, avenue)).cgPoint(scaledBy: blockSize),
                                              size: CGSize(side: blockSize)))
                 addSubview(c)

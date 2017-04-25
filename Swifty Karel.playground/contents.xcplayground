@@ -3,12 +3,14 @@
     <pages>
         <page name='LICENSE'/>
         <page name='Hello World'/>
+        <page name='World'/>
         <page name='Move'/>
         <page name='Turn Left'/>
         <page name='Put Beeper'/>
         <page name='Pick Beeper'/>
+        <page name='Walls'/>
         <page name='Customize'/>
         <page name='Theme'/>
-        <page name='Save Your Work'/>
+        <page name='Save and Share'/>
     </pages>
 </playground>
