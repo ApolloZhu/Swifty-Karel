@@ -6,7 +6,7 @@ import UIKit
  */
 /*:
  ## Customized Theme
- You can create a new `ColorScheme`, and tell Karel what color should things be in.
+ You can create a new `ColorScheme`, and tell Karel what color should things be in. This `myTheme` is perfect for Xcode's Midnight theme.
  */
 let myTheme = ColorScheme(
     simulatorBackgroundColor: #colorLiteral(red: 0.1, green: 0.1, blue: 0.1, alpha: 1),
