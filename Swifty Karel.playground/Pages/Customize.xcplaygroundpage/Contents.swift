@@ -11,11 +11,11 @@
 Playground.current.showCoordinates = true
 /*:
  ## Karel
- You can set karel to the image you like
+ You can set Karel to the image you like
  */
 Playground.current.karelImage = #imageLiteral(resourceName: "Origin.png")
 /*:
- You can control the speed of karel. Built-in settings include
+ You can control the speed of Karel. Built-in settings include
  
  - `.normal`, the default option
  - `.half`

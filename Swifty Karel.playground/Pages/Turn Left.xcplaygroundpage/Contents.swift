@@ -6,7 +6,7 @@
  */
 WorldModel(streets: 1, avenues: 1).makeKarel(at: Point(1,1), facing: .west)
 Playground.current.show(worldModel: WorldModel(streets: 1, avenues: 1))
-//: - Experiment: Try to move karel turns to face west/left, like shown above.
+//: - Experiment: Try to move Karel turns to face west/left, like shown above.
 
 turnLeft()
 

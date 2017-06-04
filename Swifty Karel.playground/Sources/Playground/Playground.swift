@@ -25,7 +25,7 @@ public class Playground {
         liveView.backgroundColor = ColorScheme.default.simulatorBackgroundColor
     }
 
-    /// Image of karel
+    /// Image of Karel
     public var karelImage = UIImage(named: "Karel.png") {
         didSet {
             karel.image = karelImage
