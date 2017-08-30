@@ -3,8 +3,8 @@ Playground.current.showCoordinates = true
 /*:
  # Karel's World
 
- Karel’s world is defined by 
- 
+ Karel lives in a world consisting of
+
  - Streets: running horizontally (east-west), and
  - Avenues: running vertically (north-south).
  - `Corner`: the intersection of a street and an avenue
