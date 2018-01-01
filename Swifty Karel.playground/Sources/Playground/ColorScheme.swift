@@ -1,13 +1,13 @@
 import UIKit
 
 public struct ColorScheme {
-    let simulatorBackgroundColor: UIColor
-    let cornerBackgroundColor: UIColor
-    let cornerCoordinatesColor: UIColor
-    let wallColor: UIColor
-    let beeperBorderColor: UIColor
-    let beeperFillColor: UIColor
-    let beeperCountColor: UIColor
+    public let simulatorBackgroundColor: UIColor
+    public let cornerBackgroundColor: UIColor
+    public let cornerCoordinatesColor: UIColor
+    public let wallColor: UIColor
+    public let beeperBorderColor: UIColor
+    public let beeperFillColor: UIColor
+    public let beeperCountColor: UIColor
     public init(simulatorBackgroundColor: UIColor, cornerBackgroundColor: UIColor, cornerCoordinatesColor: UIColor, wallColor: UIColor, beeperBorderColor: UIColor, beeperFillColor: UIColor, beeperCountColor: UIColor) {
         self.simulatorBackgroundColor = simulatorBackgroundColor
         self.cornerBackgroundColor = cornerBackgroundColor

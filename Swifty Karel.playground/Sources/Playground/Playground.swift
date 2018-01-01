@@ -1,4 +1,7 @@
-import PlaygroundSupport
+#if Device
+#else
+    import PlaygroundSupport
+#endif
 import UIKit
 import AVFoundation
 
@@ -7,9 +10,12 @@ public class Playground {
     public static let current = Playground()
     static let identifier = 6927
 
+    #if Device
+    #else
     /// Current playground page
     public var page: PlaygroundPage { return .current }
-    private let viewController = UIViewController()
+    #endif
+    let viewController = UIViewController()
     var liveView: UIView {
         return viewController.view
     }
@@ -21,7 +27,10 @@ public class Playground {
         } else {
             colorScheme = .default
         }
+        #if Device
+        #else
         PlaygroundPage.current.liveView = viewController
+        #endif
         liveView.backgroundColor = ColorScheme.default.simulatorBackgroundColor
     }
 

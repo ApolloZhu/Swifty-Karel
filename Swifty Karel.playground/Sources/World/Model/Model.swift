@@ -1,4 +1,7 @@
+#if Device
+#else
 import PlaygroundSupport
+#endif
 import UIKit
 import Foundation
 

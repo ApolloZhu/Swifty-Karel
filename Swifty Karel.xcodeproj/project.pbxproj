@@ -1,0 +1,434 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		520C58761FF9D07B00B5F4BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C58751FF9D07B00B5F4BB /* AppDelegate.swift */; };
+		520C58781FF9D07B00B5F4BB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C58771FF9D07B00B5F4BB /* ViewController.swift */; };
+		520C587B1FF9D07B00B5F4BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 520C58791FF9D07B00B5F4BB /* Main.storyboard */; };
+		520C587D1FF9D07B00B5F4BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 520C587C1FF9D07B00B5F4BB /* Assets.xcassets */; };
+		520C58801FF9D07B00B5F4BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 520C587E1FF9D07B00B5F4BB /* LaunchScreen.storyboard */; };
+		520C588C1FF9D16E00B5F4BB /* Background.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 520C58891FF9D16D00B5F4BB /* Background.mp3 */; };
+		520C588D1FF9D16F00B5F4BB /* Origin.png in Resources */ = {isa = PBXBuildFile; fileRef = 520C588A1FF9D16E00B5F4BB /* Origin.png */; };
+		520C588E1FF9D16F00B5F4BB /* Karel.png in Resources */ = {isa = PBXBuildFile; fileRef = 520C588B1FF9D16E00B5F4BB /* Karel.png */; };
+		520C58D11FF9D25500B5F4BB /* ColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C58C41FF9D25300B5F4BB /* ColorScheme.swift */; };
+		520C58D21FF9D25500B5F4BB /* CornerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C58C51FF9D25300B5F4BB /* CornerView.swift */; };
+		520C58D31FF9D25500B5F4BB /* BeeperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C58C61FF9D25300B5F4BB /* BeeperView.swift */; };
+		520C58D41FF9D25500B5F4BB /* Karel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C58C71FF9D25300B5F4BB /* Karel.swift */; };
+		520C58D61FF9D25500B5F4BB /* Playground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C58C91FF9D25400B5F4BB /* Playground.swift */; };
+		520C58D71FF9D25500B5F4BB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C58CA1FF9D25400B5F4BB /* Extensions.swift */; };
+		520C58D81FF9D25500B5F4BB /* WorldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C58CB1FF9D25400B5F4BB /* WorldView.swift */; };
+		520C58D91FF9D25500B5F4BB /* PlaygroundQuickLookSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C58CC1FF9D25400B5F4BB /* PlaygroundQuickLookSupport.swift */; };
+		520C58DA1FF9D25500B5F4BB /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C58CD1FF9D25400B5F4BB /* Header.swift */; };
+		520C58DB1FF9D25500B5F4BB /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C58CE1FF9D25400B5F4BB /* Model.swift */; };
+		520C58DC1FF9D25500B5F4BB /* Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C58CF1FF9D25500B5F4BB /* Coordinates.swift */; };
+		520C58DD1FF9D25500B5F4BB /* SpeedConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C58D01FF9D25500B5F4BB /* SpeedConfig.swift */; };
+		520C58E41FFA117D00B5F4BB /* HelloWWDC17.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C58E31FFA117D00B5F4BB /* HelloWWDC17.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		520C58721FF9D07B00B5F4BB /* Swifty Karel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swifty Karel.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		520C58751FF9D07B00B5F4BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		520C58771FF9D07B00B5F4BB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		520C587A1FF9D07B00B5F4BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		520C587C1FF9D07B00B5F4BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		520C587F1FF9D07B00B5F4BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		520C58811FF9D07B00B5F4BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		520C58891FF9D16D00B5F4BB /* Background.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Background.mp3; path = "Swifty Karel.playground/Resources/Background.mp3"; sourceTree = SOURCE_ROOT; };
+		520C588A1FF9D16E00B5F4BB /* Origin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Origin.png; path = "Swifty Karel.playground/Resources/Origin.png"; sourceTree = SOURCE_ROOT; };
+		520C588B1FF9D16E00B5F4BB /* Karel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Karel.png; path = "Swifty Karel.playground/Resources/Karel.png"; sourceTree = SOURCE_ROOT; };
+		520C58C41FF9D25300B5F4BB /* ColorScheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorScheme.swift; sourceTree = "<group>"; };
+		520C58C51FF9D25300B5F4BB /* CornerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CornerView.swift; path = "Swifty Karel.playground/Sources/World/View/CornerView.swift"; sourceTree = SOURCE_ROOT; };
+		520C58C61FF9D25300B5F4BB /* BeeperView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BeeperView.swift; path = "Swifty Karel.playground/Sources/World/View/BeeperView.swift"; sourceTree = SOURCE_ROOT; };
+		520C58C71FF9D25300B5F4BB /* Karel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Karel.swift; sourceTree = "<group>"; };
+		520C58C91FF9D25400B5F4BB /* Playground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playground.swift; sourceTree = "<group>"; };
+		520C58CA1FF9D25400B5F4BB /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		520C58CB1FF9D25400B5F4BB /* WorldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WorldView.swift; path = "Swifty Karel.playground/Sources/World/View/WorldView.swift"; sourceTree = SOURCE_ROOT; };
+		520C58CC1FF9D25400B5F4BB /* PlaygroundQuickLookSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaygroundQuickLookSupport.swift; sourceTree = "<group>"; };
+		520C58CD1FF9D25400B5F4BB /* Header.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
+		520C58CE1FF9D25400B5F4BB /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		520C58CF1FF9D25500B5F4BB /* Coordinates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinates.swift; sourceTree = "<group>"; };
+		520C58D01FF9D25500B5F4BB /* SpeedConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeedConfig.swift; sourceTree = "<group>"; };
+		520C58E31FFA117D00B5F4BB /* HelloWWDC17.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelloWWDC17.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		520C586F1FF9D07B00B5F4BB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		520C58691FF9D07B00B5F4BB = {
+			isa = PBXGroup;
+			children = (
+				520C58E11FFA0AF100B5F4BB /* Sources */,
+				520C58741FF9D07B00B5F4BB /* Swifty Karel */,
+				520C58731FF9D07B00B5F4BB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		520C58731FF9D07B00B5F4BB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				520C58721FF9D07B00B5F4BB /* Swifty Karel.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		520C58741FF9D07B00B5F4BB /* Swifty Karel */ = {
+			isa = PBXGroup;
+			children = (
+				520C58891FF9D16D00B5F4BB /* Background.mp3 */,
+				520C588B1FF9D16E00B5F4BB /* Karel.png */,
+				520C588A1FF9D16E00B5F4BB /* Origin.png */,
+				520C58751FF9D07B00B5F4BB /* AppDelegate.swift */,
+				520C58771FF9D07B00B5F4BB /* ViewController.swift */,
+				520C58791FF9D07B00B5F4BB /* Main.storyboard */,
+				520C587C1FF9D07B00B5F4BB /* Assets.xcassets */,
+				520C587E1FF9D07B00B5F4BB /* LaunchScreen.storyboard */,
+				520C58811FF9D07B00B5F4BB /* Info.plist */,
+			);
+			path = "Swifty Karel";
+			sourceTree = "<group>";
+		};
+		520C58DE1FF9D27100B5F4BB /* Playground */ = {
+			isa = PBXGroup;
+			children = (
+				520C58C41FF9D25300B5F4BB /* ColorScheme.swift */,
+				520C58C91FF9D25400B5F4BB /* Playground.swift */,
+				520C58CC1FF9D25400B5F4BB /* PlaygroundQuickLookSupport.swift */,
+				520C58D01FF9D25500B5F4BB /* SpeedConfig.swift */,
+			);
+			path = Playground;
+			sourceTree = "<group>";
+		};
+		520C58DF1FF9D28300B5F4BB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				520C58CF1FF9D25500B5F4BB /* Coordinates.swift */,
+				520C58CE1FF9D25400B5F4BB /* Model.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		520C58E01FF9D37000B5F4BB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				520C58C61FF9D25300B5F4BB /* BeeperView.swift */,
+				520C58C51FF9D25300B5F4BB /* CornerView.swift */,
+				520C58CB1FF9D25400B5F4BB /* WorldView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		520C58E11FFA0AF100B5F4BB /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				520C58CA1FF9D25400B5F4BB /* Extensions.swift */,
+				520C58CD1FF9D25400B5F4BB /* Header.swift */,
+				520C58E31FFA117D00B5F4BB /* HelloWWDC17.swift */,
+				520C58C71FF9D25300B5F4BB /* Karel.swift */,
+				520C58DE1FF9D27100B5F4BB /* Playground */,
+				520C58E21FFA0B4800B5F4BB /* World */,
+			);
+			name = Sources;
+			path = "Swifty Karel.playground/Sources";
+			sourceTree = SOURCE_ROOT;
+		};
+		520C58E21FFA0B4800B5F4BB /* World */ = {
+			isa = PBXGroup;
+			children = (
+				520C58DF1FF9D28300B5F4BB /* Model */,
+				520C58E01FF9D37000B5F4BB /* View */,
+			);
+			path = World;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		520C58711FF9D07B00B5F4BB /* Swifty Karel */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 520C58841FF9D07B00B5F4BB /* Build configuration list for PBXNativeTarget "Swifty Karel" */;
+			buildPhases = (
+				520C586E1FF9D07B00B5F4BB /* Sources */,
+				520C586F1FF9D07B00B5F4BB /* Frameworks */,
+				520C58701FF9D07B00B5F4BB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Swifty Karel";
+			productName = "Swifty Karel";
+			productReference = 520C58721FF9D07B00B5F4BB /* Swifty Karel.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		520C586A1FF9D07B00B5F4BB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = "Swifty Karel";
+				TargetAttributes = {
+					520C58711FF9D07B00B5F4BB = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 520C586D1FF9D07B00B5F4BB /* Build configuration list for PBXProject "Swifty Karel" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 520C58691FF9D07B00B5F4BB;
+			productRefGroup = 520C58731FF9D07B00B5F4BB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				520C58711FF9D07B00B5F4BB /* Swifty Karel */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		520C58701FF9D07B00B5F4BB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				520C58801FF9D07B00B5F4BB /* LaunchScreen.storyboard in Resources */,
+				520C588E1FF9D16F00B5F4BB /* Karel.png in Resources */,
+				520C588D1FF9D16F00B5F4BB /* Origin.png in Resources */,
+				520C587D1FF9D07B00B5F4BB /* Assets.xcassets in Resources */,
+				520C588C1FF9D16E00B5F4BB /* Background.mp3 in Resources */,
+				520C587B1FF9D07B00B5F4BB /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		520C586E1FF9D07B00B5F4BB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				520C58D61FF9D25500B5F4BB /* Playground.swift in Sources */,
+				520C58D71FF9D25500B5F4BB /* Extensions.swift in Sources */,
+				520C58781FF9D07B00B5F4BB /* ViewController.swift in Sources */,
+				520C58D41FF9D25500B5F4BB /* Karel.swift in Sources */,
+				520C58E41FFA117D00B5F4BB /* HelloWWDC17.swift in Sources */,
+				520C58DA1FF9D25500B5F4BB /* Header.swift in Sources */,
+				520C58D11FF9D25500B5F4BB /* ColorScheme.swift in Sources */,
+				520C58DB1FF9D25500B5F4BB /* Model.swift in Sources */,
+				520C58D31FF9D25500B5F4BB /* BeeperView.swift in Sources */,
+				520C58DC1FF9D25500B5F4BB /* Coordinates.swift in Sources */,
+				520C58D81FF9D25500B5F4BB /* WorldView.swift in Sources */,
+				520C58761FF9D07B00B5F4BB /* AppDelegate.swift in Sources */,
+				520C58DD1FF9D25500B5F4BB /* SpeedConfig.swift in Sources */,
+				520C58D21FF9D25500B5F4BB /* CornerView.swift in Sources */,
+				520C58D91FF9D25500B5F4BB /* PlaygroundQuickLookSupport.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		520C58791FF9D07B00B5F4BB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				520C587A1FF9D07B00B5F4BB /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		520C587E1FF9D07B00B5F4BB /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				520C587F1FF9D07B00B5F4BB /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		520C58821FF9D07B00B5F4BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		520C58831FF9D07B00B5F4BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		520C58851FF9D07B00B5F4BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KZ7D8X3PRK;
+				INFOPLIST_FILE = "Swifty Karel/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.github.apollozhu.Swifty-Karel";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG Device";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		520C58861FF9D07B00B5F4BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KZ7D8X3PRK;
+				INFOPLIST_FILE = "Swifty Karel/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.github.apollozhu.Swifty-Karel";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = Device;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		520C586D1FF9D07B00B5F4BB /* Build configuration list for PBXProject "Swifty Karel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				520C58821FF9D07B00B5F4BB /* Debug */,
+				520C58831FF9D07B00B5F4BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		520C58841FF9D07B00B5F4BB /* Build configuration list for PBXNativeTarget "Swifty Karel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				520C58851FF9D07B00B5F4BB /* Debug */,
+				520C58861FF9D07B00B5F4BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 520C586A1FF9D07B00B5F4BB /* Project object */;
+}
