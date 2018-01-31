@@ -131,13 +131,13 @@ extension WorldModel {
     public static func byParsing(_ source: String) -> WorldModel? {
         let lines = source.components(separatedBy: .newlines)
         
-        guard let info = lines.first?.components(separatedBy: " ").flatMap({ Int($0) }),
+        guard let info = lines.first?.components(separatedBy: " ").compactMap({ Int($0) }),
             info.count == 5, let direction = CompassDirection(rawValue: info[4]) else { return nil }
         
         let world = WorldModel(streets: info[0], avenues: info[1]).makeKarel(at: Point(info[2],info[3]), facing: direction)
         
         lines.lazy.forEach {
-            let info = $0.components(separatedBy: .whitespaces).flatMap { Double($0) }
+            let info = $0.components(separatedBy: .whitespaces).compactMap { Double($0) }
             switch info.count {
             case 3:
                 world.setBeeperCount(for: Point(info[0], info[1]), to: Int(info[2]))
