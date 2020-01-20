@@ -84,7 +84,7 @@ public class Playground {
     /// - Returns: nil if failed; otherwise returns the image and its path.
     public func saveAsImage(withName name: String) -> CachedViewable? {
         if let image = worldView.snapshot(),
-            let png = UIImagePNGRepresentation(image) {
+            let png = image.pngData() {
             do {
                 let url = URL(fileURLWithPath: "\(name).png")
                 try png.write(to: url)

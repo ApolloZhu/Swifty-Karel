@@ -12,10 +12,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let vc = Playground.current.viewController
-        addChildViewController(vc)
+        addChild(vc)
         view.addSubview(vc.view)
         vc.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        vc.didMove(toParentViewController: self)
+        vc.didMove(toParent: self)
     }
 
     override func viewDidAppear(_ animated: Bool) {

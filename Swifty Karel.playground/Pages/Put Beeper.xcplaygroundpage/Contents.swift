@@ -14,7 +14,6 @@ Playground.current.show(worldModel: WorldModel(streets: 1, avenues: 2))
 putBeeper()
 move()
 
-
 /*:
  ****
  [Previous](@previous) | [Next](@next)
