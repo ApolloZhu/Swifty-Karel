@@ -1,5 +1,5 @@
 /*:
- [Table of Contents](Table%20of%20Contents) | [Previous](@previous) | [Next](@next)
+ [Previous](@previous) | [Next](@next)
  ****
  # Customize your playground
  Playground is highly customizable, let's walk through some settings you can configure.
@@ -36,5 +36,5 @@ Playground.current.backgroundMusicVolume = 0.3
 runKarel()
 /*:
  ****
- [Table of Contents](Table%20of%20Contents) | [Previous](@previous) | [Next](@next)
+ [Previous](@previous) | [Next](@next)
  */

@@ -32,5 +32,5 @@ Playground.current.show(worldModel: model)
 
 /*:
  ****
- [Previous](@previous) | [Next](@next)
+ [Previous](@previous)
  */

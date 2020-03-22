@@ -1,5 +1,5 @@
 /*: 
- [Table of Contents](Table%20of%20Contents) | [Previous](@previous) | [Next](@next)
+ [Previous](@previous) | [Next](@next)
  ****
  # Start Exploring!
 
@@ -14,6 +14,6 @@ Playground.current.show(worldModel: WorldModel(streets: 1, avenues: 3))
 move()
 
 /*:
-  ****
- [Table of Contents](Table%20of%20Contents) | [Previous](@previous) | [Next](@next)
+ ****
+ [Previous](@previous) | [Next](@next)
  */

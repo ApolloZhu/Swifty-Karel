@@ -6,5 +6,5 @@
 helloWWDC17()
 
 /*:
- I'm Karel, your personal robot. Let's [get started!](@next)
+ I'm Karel, your personal robot. [Let's get started!](@next)
  */

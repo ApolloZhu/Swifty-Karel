@@ -1,6 +1,7 @@
 /*:
  # License
- Copyright 2016-2017 Apollo Zhu (朱智语)
+
+ Copyright 2016-2020 @ApolloZhu | Zhiyu Zhu | 朱智语
 
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -15,5 +16,5 @@
  limitations under the License.
 
  ****
- [Table of Contents](Table%20of%20Contents) | [Previous](@previous)
+ [I Understood](@next)
  */

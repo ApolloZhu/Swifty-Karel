@@ -1,5 +1,5 @@
 /*:
- [Table of Contents](Table%20of%20Contents) | [Previous](@previous) | [Next](@next)
+ [Previous](@previous) | [Next](@next)
  ****
  # Walls Blocks My Way
  When you are blocked by a wall, turn away from it!
@@ -13,5 +13,5 @@ move()
 
 /*:
  ****
- [Table of Contents](Table%20of%20Contents) | [Previous](@previous) | [Next](@next)
+ [Previous](@previous) | [Next](@next)
  */

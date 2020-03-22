@@ -1,5 +1,5 @@
 /*:
- [Table of Contents](Table%20of%20Contents) | [Previous](@previous) | [Next](@next)
+ [Previous](@previous) | [Next](@next)
  ****
  # Turn Left
  - Important: The `turnLeft()` method turns Karel 90 degrees to its left (counter-clockwise).
@@ -12,5 +12,5 @@ turnLeft()
 
 /*:
  ****
- [Table of Contents](Table%20of%20Contents) | [Previous](@previous) | [Next](@next)
+ [Previous](@previous) | [Next](@next)
  */
