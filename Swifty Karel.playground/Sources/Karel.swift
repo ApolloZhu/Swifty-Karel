@@ -33,7 +33,7 @@ public class Karel: UIView, Coordinated {
                 }}
             )
         } else {
-            let timer = Timer.scheduledTimer(withTimeInterval: Playground.current.duration * count, repeats: false) { [weak self] timer in
+            _ = Timer.scheduledTimer(withTimeInterval: Playground.current.duration * count, repeats: false) { [weak self] timer in
                 defer { timer.invalidate() }
                 guard let this = self else { return }
                 Playground.current.liveView.subviews.lazy.forEach {
